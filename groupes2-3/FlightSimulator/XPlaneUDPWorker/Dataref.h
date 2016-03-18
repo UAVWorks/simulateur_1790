@@ -9,12 +9,14 @@ private:
 	QString* dref_path ;
 	float value ;
 	QString * datagram ;
-
+	int QFI_id;
+	int QFI_axis;
+	int addr_modip ;
 
 public:
-	Datagram(){}
-	QString* setDataref(int freq, int id, QString* path) ;
-	QString* setDataref(float value, QString* path) ;
+	Dataref(int freq, int id, QString* path, int QFI_id, int QFI_axis){}
+	Dataref(int freq, int id, QString* path, int addr_modip) ;
+	Dataref(float value, QString* path, int addr_modip) ;
 	QString *getDatagram() ;
 
 } ;
