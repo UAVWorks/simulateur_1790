@@ -92,16 +92,18 @@ void QAltimeter::drawBackground(QPainter& painter )
 
 
 
-    float w, h ;		// épaisseur et longueur du trait de graduation
-    QRect gRect ;		// rectangle "trait graduation"
-    float gRadius ;		// arrondi sommets rectangle gRect
-    float r = m_radius[ALTIMETER] ;	// rayon de départ
+
 
     painter.save() ;
     painter.setBrush( white ) ;
     painter.rotate( m_start[ALTIMETER] ) ;
 
     qfiBackground(painter, m_radius[ALTIMETER], 10 ) ;
+    float w, h ;		// épaisseur et longueur du trait de graduation
+    QRect gRect ;		// rectangle "trait graduation"
+    float gRadius ;		// arrondi sommets rectangle gRect
+    float r = m_radius[ALTIMETER] ;	// rayon de départ
+
 
     for ( int i = 0 ; i <= ( m_max[ALTIMETER] - m_min[ALTIMETER] ) ; ++i ) {
 
@@ -119,6 +121,7 @@ void QAltimeter::drawBackground(QPainter& painter )
 
 
 
+
     for ( int i = 0 ; i < ( m_max[ALTIMETER] - m_min[ALTIMETER] ) ; i += 5 ) {
         float alpha = qDegreesToRadians( m_start[ALTIMETER] + i * m_step[ALTIMETER] ) ;
         float r = m_radius[ALTIMETER] - 120 ;
@@ -127,8 +130,10 @@ void QAltimeter::drawBackground(QPainter& painter )
    // showText(painter, fo1, white, QPoint( 0, -0.3 * m_radius[ALTIMETER] ), label(ALTIMETER) ) ;
     //showText(painter, fo2, white, QPoint( 1, -0.2 * m_radius[ALTIMETER] ), unit(ALTIMETER) ) ;
 
-    // graduations "QNH"
 
+
+    // graduations "QNH"
+/*
     painter.save() ;
 
     QPen pen( white ) ;
@@ -153,6 +158,12 @@ void QAltimeter::drawBackground(QPainter& painter )
     }
 
     painter.restore() ;
+*/
+    painter.setBrush( white ) ;
+    //painter.drawEllipse( -QFI_RADIUS*0.4,-QFI_RADIUS*0.4,2*QFI_RADIUS*0.4,2*QFI_RADIUS*0.4 ) ;
+    // painter.drawPie( -QFI_RADIUS,QFI_RADIUS,0.8*QFI_RADIUS,3*QFI_RADIUS,0,36 ) ;
+        painter.drawPie(-QFI_RADIUS,-QFI_RADIUS,2*QFI_RADIUS,2*QFI_RADIUS,-18*16,-324*16);
+    painter.drawPie(-0.9*0.75*QFI_RADIUS,-0.9*0.75*QFI_RADIUS,1.8*0.75*QFI_RADIUS,1.8*0.75*QFI_RADIUS,-18*16,36*16);
 
 
 
@@ -173,10 +184,15 @@ void QAltimeter::drawForeground(QPainter& painter )
     float len ;						// longueur de l'aiguille orientée 0X+
     QVector<QPointF> pts ;			// points de construction dans demi-plan 0Y+
     QColor white(230,230,230) ;		// couleur de la pointe
+    QColor transparent (230,250,40,255) ;
+    QColor	black1(15,13,11) ;
+    QColor	black2(34,32,27) ;
 
 
 
     QPolygonF needle ;
+
+
 
 
     // aiguille "ALTIMETER"
@@ -197,6 +213,9 @@ void QAltimeter::drawForeground(QPainter& painter )
     painter.save() ;
     painter.rotate( -90 + value(ALTIMETER) * 36 / 10000 ) ;
     qfiNeedle(painter, white, pts, 30, 0, 0.5 * len ) ;
+//    painter.setBrush( white ) ;
+//    painter.drawEllipse( -QFI_RADIUS*0.4,-QFI_RADIUS*0.4,2*QFI_RADIUS*0.4,2*QFI_RADIUS*0.4 ) ;
+
 
     painter.restore() ;
 
@@ -261,8 +280,15 @@ void QAltimeter::drawForeground(QPainter& painter )
         painter.rotate( m_step[QNH] ) ;
 
     }
+    updateWithBackground();
 
     painter.restore() ;
+
+
+
+    // fond
+
+// QFI_RADIUS[ALTIMETER] ; 36 degré ;
 
 
 
