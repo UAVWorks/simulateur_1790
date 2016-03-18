@@ -3,7 +3,7 @@
 LLFFS::LLFFS(QWidget *parent) :
     QMainWindow(parent)
 {
-    
+
     setupUi(this);
     tcpworker = new TCPWorker ;
     maindialog = new MainDialog ;

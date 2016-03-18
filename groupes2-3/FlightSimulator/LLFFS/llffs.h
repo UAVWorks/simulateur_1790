@@ -1,6 +1,7 @@
 #ifndef LLFFS_H
 #define LLFFS_H
 
+#include "ui_llffs.h"
 #include <MainDialog.h>
 #include <TCPWorker.h>
 #include <XPlaneUDPWorker.h>
@@ -8,7 +9,7 @@
 #include <QWidget>
 #include <qamflightinstrument.h>
 
-class LLFFS : public QMainWindow, private Ui::LLFFS
+class LLFFS : public QWidget, private Ui::LLFFS
 {
     Q_OBJECT
 
@@ -21,5 +22,6 @@ private:
     QList<QFlightInstrument *> QFIList ;
     QList<Dataref *> QDataref ;
 };
+
 
 #endif // LLFFS_H
