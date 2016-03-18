@@ -29,7 +29,7 @@
 #ifndef QAIRSPEED_H
 #define QAIRSPEED_H
 
-#include <qflightinstrument.h>
+#include "qflightinstrument.h"
 
 class QAirSpeed : public QFlightInstrument
 {
@@ -38,7 +38,7 @@ class QAirSpeed : public QFlightInstrument
   public:
     explicit QAirSpeed(QWidget* parent = 0 ) ;
 
-    enum Axis{ AIRSPEED, ROTOR } ;
+    enum Axis{ AIRSPEED, POTEN } ;
 
   protected:
     virtual void drawBackground(QPainter& painter ) ;
@@ -47,6 +47,7 @@ class QAirSpeed : public QFlightInstrument
   private slots:
 //    void selectChanged() ;
     virtual void selectPressed(int num, bool longClic = false ) ;
+    virtual void adjustmentChanged(int num, float value ) ;
 
   private:
     void showArc(QPainter&, QColor&, float, float, float ) ;
@@ -62,7 +63,9 @@ class QAirSpeed : public QFlightInstrument
     float	m_min[2] ;		// graduation minimale
     float	m_max[2] ; 		// graduation maximale
 
+
     bool    m_isUnitKmh ;
+
 } ;
 
 #endif
