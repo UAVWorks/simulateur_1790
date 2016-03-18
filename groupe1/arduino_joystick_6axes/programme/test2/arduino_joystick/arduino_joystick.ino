@@ -53,28 +53,32 @@ void sendJoyReport(struct joyReport_t *report)
 
 void loop() 
 {
-      int pulseX, pulseY;
+  int pulseX, pulseY,accelerationX, accelerationY;
       pulseX = pulseIn(XIN,HIGH);  // Read X pulse
-        if (pulseX < valeur_Min_Aclm[0])
+        accelerationX = ((pulseX / 10) - 500) * 8;
+
+        if (accelerationX< valeur_Min_Aclm[0])
         {
-          valeur_Min_Aclm[0] = pulseX ;
+          valeur_Min_Aclm[0] = accelerationX;
         }
-        if (pulseX > valeur_Max_Aclm[0])
+        if (accelerationX > valeur_Max_Aclm[0])
         {
-          valeur_Max_Aclm[0] = pulseX;
+          valeur_Max_Aclm[0] = accelerationX;
         }
       pulseY = pulseIn(YIN,HIGH);  // Read Y pulse
-        if (pulseY < valeur_Min_Aclm[1])
+        accelerationY = ((pulseY / 10) - 500) * 8;
+
+        if (accelerationY < valeur_Min_Aclm[1])
         {
-          valeur_Min_Aclm[1] = pulseY ;
+          valeur_Min_Aclm[1] = accelerationY ;
         }
-        if (pulseY > valeur_Max_Aclm[1])
+        if (accelerationY > valeur_Max_Aclm[1])
         {
-          valeur_Max_Aclm[1] = pulseY;
+          valeur_Max_Aclm[1] = accelerationY;
         }
  
-    joyReport.axis[4] =map(pulseX, valeur_Min_Aclm[0], valeur_Max_Aclm[0], -32768,32767 );
-    joyReport.axis[5] =map(pulseY, valeur_Min_Aclm[1], valeur_Max_Aclm[1], -32768,32767 );
+    joyReport.axis[4] =map(accelerationX, valeur_Min_Aclm[0], valeur_Max_Aclm[0], -32768,32767 );
+    joyReport.axis[5] =map(accelerationY, valeur_Min_Aclm[1], valeur_Max_Aclm[1], -32768,32767 );
 
     for (uint8_t ind=0; ind<NUM_POTAR; ind++)
     {

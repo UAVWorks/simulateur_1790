@@ -7,15 +7,22 @@ void setup() {
 
 void loop() {
   // variables to read the pulse widths:
-  int pulseX, pulseY;
+  int pulseX, pulseY,accelerationX, accelerationY;
  
   pulseX = pulseIn(xIn,HIGH);  // Read X pulse  
+  accelerationX = ((pulseX / 10) - 500) * 8;
+  
   pulseY = pulseIn(yIn,HIGH);  // Read Y pulse
+  accelerationY = ((pulseY / 10) - 500) * 8;
 
   // Display result
+  Serial.print(accelerationX);	       // Display X and Y values
+  Serial.print("\t");
+  Serial.println(accelerationY);
   Serial.print(pulseX);	       // Display X and Y values
   Serial.print("\t");
-  Serial.println(pulseY);
+  Serial.println(pulsey);	       // Display X and Y values
+  Serial.println();
 
   delay(200);
 }
