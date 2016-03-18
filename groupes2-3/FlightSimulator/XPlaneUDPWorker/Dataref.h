@@ -7,9 +7,15 @@ private:
 	int dref_freq ;
 	int dref_id ;
 	QString* dref_path ;
+	float value ;
+	QString * datagram ;
+
 
 public:
-	Dataref(int freq=100, int id, QString* path);
+	Datagram(){}
+	QString* setDataref(int freq, int id, QString* path) ;
+	QString* setDataref(float value, QString* path) ;
+	QString *getDatagram() ;
 
 } ;
 
