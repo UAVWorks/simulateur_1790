@@ -32,10 +32,13 @@ QAirSpeed::QAirSpeed(QWidget* parent )
     : QFlightInstrument(parent)
     , m_isUnitKmh( true )
 {
-    /*setUnit(QString("x 1000"), AIRSPEED ) ;*/
     setMinMax(0, 140, AIRSPEED ) ;
     setThresholds(16,111.5, AIRSPEED ) ;
     setValue(0, AIRSPEED ) ;
+
+    //Potentiometre
+    setMinMax(0, 1000, POTEN ) ;
+    setValue(0, POTEN) ;
 
     m_radius[AIRSPEED] = QFI_RADIUS ;
     m_start[AIRSPEED]  = 120 ;
@@ -47,10 +50,11 @@ QAirSpeed::QAirSpeed(QWidget* parent )
     m_step2[AIRSPEED]   = m_span2[AIRSPEED] / ( m_max[AIRSPEED] - m_min[AIRSPEED] ) ;
 
 
+
     //	animation des aiguilles (pour tests)
 
     setAdjustable(1, 0, 250 ) ;
-    connect(this, SIGNAL( selectChanged() ), this, SLOT( selectChanged() ) ) ;
+    adjustmentChanged(POTEN,1000); //TEST DE POTENTIOMETRE
 }
 
 // Un clique sur le bouton bas droit change l'unité
@@ -60,6 +64,15 @@ void QAirSpeed::selectPressed(int num, bool longClic )
     m_isUnitKmh = !m_isUnitKmh ;
     updateWithBackground() ;
 }
+
+
+void QAirSpeed::adjustmentChanged(int num, float value )
+{
+    if (num != POTEN) return ;
+    setValue(value,num) ;
+    updateWithBackground() ;
+}
+
 
 // dessin d'un arc de cercle ép. 24 px, bouts arrondis
 
@@ -107,12 +120,12 @@ void QAirSpeed::drawBackground(QPainter& painter )
         QFont	fo2("Arial", 50 ) ;
 
 
-
         // fond
 
         painter.setBrush( black1 ) ;
         painter.drawEllipse( drawingRect() ) ;
         qfiBackground(painter, m_radius[AIRSPEED], 10);
+
 
         // zones colorées "Turbine"
 
@@ -129,6 +142,12 @@ void QAirSpeed::drawBackground(QPainter& painter )
         start += span + 4 ;
         span = m_step[AIRSPEED] * (( -1.1  ) / 3 - 0.8 ) ;
         qfiArc(painter, yellow, radius, start, span, 24 ) ;
+
+        //Potentiometre reglage
+        start += span - 98 ;
+        span = m_step[AIRSPEED] * ( value(POTEN) * (4.8/1000 )) ;
+        qfiArc(painter, red, radius, start, span, 24 ) ;
+
 
         // graduations "AIRSPEED" de 0 à 50 km/h
 
@@ -247,6 +266,10 @@ else {
         span = m_step[AIRSPEED] * (( 5.5  ) / 9 ) ;
         qfiArc(painter, yellow, radius, start, span, 24 ) ;
 
+        //Potentiometre reglage
+        start += span - 128 ;
+        span = m_step[AIRSPEED] * ( value(POTEN) * (4.8/1000 )) ;
+        qfiArc(painter, red, radius, start, span, 24 ) ;
 
         // graduations "AIRSPEED" de 0 à 50 km/h
 
