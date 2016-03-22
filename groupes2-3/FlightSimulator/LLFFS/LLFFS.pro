@@ -35,8 +35,8 @@ SOURCES += main.cpp\
     $${INSTRUMENTSPATH}/qamtachymeter.cpp \
     $${INSTRUMENTSPATH}/qamturncoordinator.cpp \
     $${INSTRUMENTSPATH}/qaltimeter.cpp \
-    ../QamFlightInstruments-0.4/qvariometer.cpp \
-    ../QamFlightInstruments-0.4/qairspeed.cpp \
+    $${INSTRUMENTSPATH}/qvariometer.cpp \
+    $${INSTRUMENTSPATH}/qairspeed.cpp \
     llffs.cpp
 
 HEADERS  += llffs.h \
@@ -54,8 +54,8 @@ HEADERS  += llffs.h \
     $${INSTRUMENTSPATH}/qamtachymeter.h \
     $${INSTRUMENTSPATH}/qamturncoordinator.h \
     $${INSTRUMENTSPATH}/qaltimeter.h \
-    ../QamFlightInstruments-0.4/qvariometer.h \
-    ../QamFlightInstruments-0.4/qairspeed.h
+    $${INSTRUMENTSPATH}/qvariometer.h \
+    $${INSTRUMENTSPATH}/qairspeed.h
 
 FORMS    += \
     $${MBDIALOGPATH}/maindialog.ui \
