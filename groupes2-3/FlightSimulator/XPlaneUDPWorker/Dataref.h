@@ -1,6 +1,17 @@
 #ifndef DATAREF_H
 #define DATAREF_H
 
+#include <QString>
+#include <QByteArray>
+
+#define UNLIKELY_FLOAT 0.123456789
+
+typedef struct 
+{
+	int id ;
+	float value ;
+} XPlaneRrefAnswer ;
+
 class Dataref
 {
 private:
