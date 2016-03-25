@@ -84,7 +84,7 @@ private:
 	BindType m_source ;				// association source type
 	BindType m_target ;				// association target type
 	QString m_sourceName ;			// association source path or name
-	Qtring m_targetName ;			// association target path or name
+	QString m_targetName ;			// association target path or name
 
 	float m_scale ;					// scale factor
 	float m_offset ;				// zero offset
