@@ -12,6 +12,30 @@ Dataref::Dataref(const QString& input, const QString& output, float scale, float
 
 }
 
+QString sourceName() const {
+
+}
+
+QString targetName() const {
+
+} 
+
+int instrumentId() const {
+
+}
+
+int instrumentAxis() const {
+
+}
+
+float scale() const {
+
+}
+
+float offset() const {
+	
+}
+
 bool Dataref::isRref() const {
 	if (this->m_source=="RREF")
 		return true ;
