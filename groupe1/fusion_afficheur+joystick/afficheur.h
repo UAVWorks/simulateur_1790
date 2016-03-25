@@ -1,3 +1,5 @@
+#include <SparkFunColorLCDShield.h>
+#include <stdio.h> 
 
 void menu();
 void affiche();

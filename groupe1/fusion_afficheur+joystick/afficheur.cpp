@@ -32,4 +32,8 @@ void affiche(){
 		affiche_cyclique();
 	else if(!digitalRead(buttonPins[1]))
 		affiche_collectif();
+  else if(!digitalRead(buttonPins[2]))
+    affiche_pallonier();
+  else
+    menu();
 }
