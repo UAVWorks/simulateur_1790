@@ -6,8 +6,8 @@
 class memsic{
 	public:
 		memsic(int Pinx, int Piny);
-		int valuex();
-		int valuey();
+		int value(char sortie);
+		
 	private:
 		void update();
 		int inx;

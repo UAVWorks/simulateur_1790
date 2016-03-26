@@ -23,14 +23,16 @@ void memsic::update(){
 		miny = Valuey;
 	if (Valuey > maxx)
 		maxy = Valuey;
-}
-
-int memsic::valuex(){
-	memsic::update();
+	
 	Valuex = map(pulsex,minx,maxx,-32768,32767);
+	Valuey = map(pulsey,miny,maxy,-32768,32767);
 }
 
-int memsic::Valuey(){
+int memsic::value(char sortie){
 	memsic::update();
-	Valuey = map(pulsey,miny,maxy,-32768,32767);
+
+	if (sortie == "x")
+		return Valuex;
+	if (sorite == "y")
+		return Valuey;
 }
