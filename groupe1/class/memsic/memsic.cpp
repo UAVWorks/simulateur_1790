@@ -1,3 +1,13 @@
+/**
+ * \file	memsic.cpp
+ * \author	calbatorix
+ * \version 1.0
+ * \date    26 mars 2016 
+ * \brief   Fichier de definition pour la class memsic.
+ *
+ * \details Ce fichier a pour but de definir les methodes et les constucteurs/destructeurs de la class memsic.
+ *
+ */
 #include "memsic.h"
 
 memsic::memsic(int Pinx, int Piny){
@@ -28,7 +38,7 @@ void memsic::update(){
 	Valuey = map(pulsey,miny,maxy,-32768,32767);
 }
 
-int memsic::value(char sortie){
+int memsic::value(char sortie) const{
 	memsic::update();
 
 	if (sortie == "x")
