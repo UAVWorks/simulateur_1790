@@ -4,8 +4,6 @@
 potar 	collectif(0);
 potar 	pallonier(1);
 memsic 	cyclique(2,3);
-char x = x;
-char y = y;
 
 void setup()
 {
@@ -18,8 +16,8 @@ void loop(){
 	Serial.print("pallonier: ");
 	Serial.println(pallonier.value());
 	Serial.print("cycliqueX: ");
-	Serial.println(cyclique.value(x));
+	Serial.println(cyclique.value(1));
 	Serial.print("cycliqueY: ");
-	Serial.println(cyclique.value(y));
+	Serial.println(cyclique.value(2));
 	delay(100);
 }

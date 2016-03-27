@@ -2,7 +2,7 @@
  * \file	memsic.h
  * \author	calbatorix
  * \version 1.0
- * \date    26 mars 2016 
+ * \date    26 mars 2016
  * \brief   Creation de la class mesic.
  *
  * \details todo.
@@ -32,7 +32,7 @@ class memsic{
      	*  \param sortie : l'axe dont on veut recupere la valeur.
      	*  \return la valeur de l'axe choisi.
      	*/
-		int value(char sortie) const;
+		int value(int axes) const;
 
 	private:
 		void update();
