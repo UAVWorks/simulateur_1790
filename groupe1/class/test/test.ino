@@ -4,8 +4,8 @@
 potar 	collectif(0);
 potar 	pallonier(1);
 memsic 	cyclique(2,3);
-char x = "x";
-char y = "y";
+char x = x;
+char y = y;
 
 void setup()
 {
