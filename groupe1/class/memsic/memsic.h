@@ -32,12 +32,12 @@ class memsic{
      	*  \param sortie : l'axe dont on veut recupere la valeur.
      	*  \return la valeur de l'axe choisi.
      	*/
-		int value(int axes) const;
+		int value(int axes) ;
 
 	private:
 		void update();
 		int inx;
-		int iny
+		int iny;
 		int pulsex;
 		int pulsey;
 		int Valuex;

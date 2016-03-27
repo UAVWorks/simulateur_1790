@@ -2,7 +2,7 @@
  * \file	potar.h
  * \author	calbatorix
  * \version 1.0
- * \date    26 mars 2016 
+ * \date    26 mars 2016
  * \brief   Creation de la class potar.
  *
  * \details todo.
@@ -27,7 +27,7 @@ class potar{
 		/*!
      	*  \brief lecture de la valeur de sortie du potentiometre.
      	*
-     	*  Methode qui permet de recuperer la valeur  de sortie du potentiometre a 
+     	*  Methode qui permet de recuperer la valeur  de sortie du potentiometre a
      	* transmetre au rapport du joystick.
      	*  \return la valeur de l'axe.
      	*/

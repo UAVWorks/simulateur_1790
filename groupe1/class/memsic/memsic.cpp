@@ -38,7 +38,7 @@ void memsic::update(){
 	Valuey = map(pulsey,miny,maxy,-32768,32767);
 }
 
-int memsic::value(int axes) const{
+int memsic::value(int axes) {
 	memsic::update();
 
 	if (axes == 1)
