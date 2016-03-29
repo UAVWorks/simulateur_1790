@@ -9,8 +9,12 @@
 #include <qamchronograph.h>
 #include <qamturncoordinator.h>
 #include <qamtachymeter.h>
+#include <QHA.h>
 #include <iostream>
 #include <QFile>
+#include <QString>
+#include <QTextStream>
+
 
 class test : public QWidget, private Ui::test
 {
@@ -24,12 +28,13 @@ public:
     void createChronograph(int id, int x, int y, int widht, int height) ;
     void createTurnCoordinator(int id, int x, int y, int widht, int height) ;
     void createTachymeter(int id, int x, int y, int widht, int height) ;
-
-    void setQFI(int x, int y, int width, int height) ;
-    void loadConf(QString& file) ;
+    void createQHA(int id, int x, int y, int width, int height) ;
+    void setQFI(int x, int y, int width, int height, QamFlightInstrument* QFI) ;
+    bool loadConf(QString& file) ;
 
 private :
-   QList<QamFlightInstrument *> QListQFI ;
+    QString configFile ;
+    QList<QamFlightInstrument *> QListQFI ;
 
 };
 

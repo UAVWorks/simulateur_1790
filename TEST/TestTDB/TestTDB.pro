@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     $${QFIPATH}/qamchronograph.cpp \
     $${QFIPATH}/qamflightinstrument.cpp \
     $${QFIPATH}/qamturncoordinator.cpp \
-    $${QFIPATH}/qamtachymeter.cpp
+    $${QFIPATH}/qamtachymeter.cpp \
+    ../QamFlightInstruments-0.4/QHA.cpp
 
 HEADERS  += test.h \
     $${QFIPATH}/qairspeed.h \
@@ -30,6 +31,7 @@ HEADERS  += test.h \
     $${QFIPATH}/qamchronograph.h \
     $${QFIPATH}/qamflightinstrument.h \
     $${QFIPATH}/qamturncoordinator.h \
-    $${QFIPATH}/qamtachymeter.h
+    $${QFIPATH}/qamtachymeter.h \
+    ../QamFlightInstruments-0.4/QHA.h
 
 FORMS    += test.ui
