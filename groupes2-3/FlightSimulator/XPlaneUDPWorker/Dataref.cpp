@@ -12,6 +12,38 @@ Dataref::Dataref(const QString& input, const QString& output, float scale, float
 
 }
 
+
+void bindToInstrument(int iId, int aId, float scale, float offset) {
+
+}
+
+void bindToDigitalIo(const QString& name, float scale, float offset) {
+
+}
+
+void bindToAnalogIo(const QString& name, float scale, float offset) {
+
+}
+
+
+QByteArray xplaneRrefRequest() const {
+
+}
+
+QByteArray xplaneRrefStop() const {
+
+}
+
+QByteArray xplaneDref()(float value) const {
+
+}
+
+
+int id() const {
+
+}
+
+
 QString sourceName() const {
 
 }
@@ -19,6 +51,7 @@ QString sourceName() const {
 QString targetName() const {
 
 } 
+
 
 int instrumentId() const {
 
@@ -35,6 +68,16 @@ float scale() const {
 float offset() const {
 	
 }
+
+
+float lastValue() const {
+
+}
+
+void setLastValue(float v) {
+
+}
+
 
 bool Dataref::isRref() const {
 	if (this->m_source=="RREF")
@@ -63,6 +106,7 @@ bool Dataref::isRrefAnalog() const {
 	return false ;
 }
 
+
 bool Dataref::Dref() const {
 	if (this->m_target=="DREF")
 		return true ;
@@ -82,6 +126,7 @@ bool Dataref::isDrefAnalog() const {
 			return true ;
 	return false ;
 }
+
 
 bool Dataref::isDigitalQfiInput() const {
 	if (this->m_source=="TOR")
@@ -109,4 +154,13 @@ bool Dataref::isDigitalToDigital() const {
 		if (this->m_target=="TOR")
 			return true ;
 	return false ;
+}
+
+
+float scaled(float value) const {
+
+}
+
+QByteArray xplaneRref(int freq) const {
+
 }
