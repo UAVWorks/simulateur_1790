@@ -22,7 +22,7 @@ class QAltimeter : public QamFlightInstrument
     enum Axis{ ALTIMETER, QNH } ;
 
   private slots:
-//    void selectChanged() ;
+    virtual void adjustementChanged(int num, float value) ;
 
   protected:
     virtual void drawBackground(QPainter& painter ) ;
@@ -31,6 +31,7 @@ class QAltimeter : public QamFlightInstrument
   private:
     void showArc(QPainter&, QColor&, float, float, float ) ;
     void showText(QPainter&, QFont&, QColor&, const QPoint&, const QString& ) ;
+
 
   private:
     QFont fo1;
