@@ -366,7 +366,7 @@ void QAirSpeed::drawForeground(QPainter& painter )
 
         len = 0.95 * m_radius[AIRSPEED] ;
         pts.clear() ;
-        pts << QPointF( 0, 15 ) << QPointF( len - 60, 15 ) << QPointF( len, 0 ) ;
+        pts << QPointF( -120, 60 ) << QPointF( -40, 15 )<< QPointF( len - 60, 15 ) << QPointF( len, 0 ) ;
 
         painter.save() ;
 
@@ -391,7 +391,7 @@ void QAirSpeed::drawForeground(QPainter& painter )
         }
 
 
-        qfiNeedle(painter, white, pts, 30, 0, 0.4 * len ) ;
+        qfiNeedle(painter, white, pts, 30, 0, 0.01*len ) ;
 
         //painter.drawPath( path ) ;
 
