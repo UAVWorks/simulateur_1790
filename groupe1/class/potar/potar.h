@@ -31,7 +31,7 @@ class potar{
      	* transmetre au rapport du joystick.
      	*  \return la valeur de l'axe.
      	*/
-		int value() const;
+		int value();
 	private:
 		void update();
 		int in;

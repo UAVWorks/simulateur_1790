@@ -2351,16 +2351,16 @@
  701               		.file 9 "../../LUFA/Drivers/USB/Class/Device/../../HighLevel/USBTask.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 MassStorage.c
-     /tmp/ccZkIHwx.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccZkIHwx.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccZkIHwx.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccZkIHwx.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccZkIHwx.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccZkIHwx.s:12     .text.StreamCallback_MS_Device_AbortOnMassStoreReset:0000000000000000 StreamCallback_MS_Device_AbortOnMassStoreReset
+     /tmp/ccYcG1UX.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccYcG1UX.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccYcG1UX.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccYcG1UX.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccYcG1UX.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccYcG1UX.s:12     .text.StreamCallback_MS_Device_AbortOnMassStoreReset:0000000000000000 StreamCallback_MS_Device_AbortOnMassStoreReset
                              .bss:0000000000000000 CallbackIsResetSource
-     /tmp/ccZkIHwx.s:36     .text.MS_Device_ProcessControlRequest:0000000000000000 MS_Device_ProcessControlRequest
-     /tmp/ccZkIHwx.s:132    .text.MS_Device_ConfigureEndpoints:0000000000000000 MS_Device_ConfigureEndpoints
-     /tmp/ccZkIHwx.s:266    .text.MS_Device_USBTask:0000000000000000 MS_Device_USBTask
+     /tmp/ccYcG1UX.s:36     .text.MS_Device_ProcessControlRequest:0000000000000000 MS_Device_ProcessControlRequest
+     /tmp/ccYcG1UX.s:132    .text.MS_Device_ConfigureEndpoints:0000000000000000 MS_Device_ConfigureEndpoints
+     /tmp/ccYcG1UX.s:266    .text.MS_Device_USBTask:0000000000000000 MS_Device_USBTask
 
 UNDEFINED SYMBOLS
 USB_USBTask
