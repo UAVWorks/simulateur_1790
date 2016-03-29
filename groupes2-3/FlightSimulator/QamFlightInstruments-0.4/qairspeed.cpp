@@ -407,7 +407,7 @@ void QAirSpeed::drawForeground(QPainter& painter )
         cg.setColorAt(1.0, Qt::white ) ;
 
         painter.save() ;
-        painter.rotate(-135 ) ;
+        painter.rotate(-135+(f*1.852) *15 /10.0) ;
         painter.setPen(Qt::black ) ;
         painter.setBrush(QBrush( cg ) ) ;
         painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;
@@ -416,5 +416,6 @@ void QAirSpeed::drawForeground(QPainter& painter )
         painter.setPen(Qt::NoPen ) ;
         painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;
         painter.restore() ;
+
 }
 
