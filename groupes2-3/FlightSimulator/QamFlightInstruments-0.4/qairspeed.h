@@ -63,7 +63,6 @@ class QAirSpeed : public QFlightInstrument
     float	m_min[2] ;		// graduation minimale
     float	m_max[2] ; 		// graduation maximale
 
-
     bool    m_isUnitKmh ;
 
 } ;

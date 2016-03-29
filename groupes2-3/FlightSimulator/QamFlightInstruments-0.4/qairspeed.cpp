@@ -33,7 +33,7 @@ QAirSpeed::QAirSpeed(QWidget* parent )
     , m_isUnitKmh( true )
 {
     setMinMax(0, 140, AIRSPEED ) ;
-    setThresholds(16,111.5, AIRSPEED ) ;
+    //setThresholds(16+value(POTEN),111.5, AIRSPEED ) ;
     setValue(0, AIRSPEED ) ;
 
     //Potentiometre
@@ -54,7 +54,7 @@ QAirSpeed::QAirSpeed(QWidget* parent )
     //	animation des aiguilles (pour tests)
 
     setAdjustable(1, 0, 250 ) ;
-    adjustmentChanged(POTEN,1000); //TEST DE POTENTIOMETRE
+    adjustmentChanged(POTEN,0); //TEST DE POTENTIOMETRE
 }
 
 // Un clique sur le bouton bas droit change l'unité
@@ -65,6 +65,7 @@ void QAirSpeed::selectPressed(int num, bool longClic )
     updateWithBackground() ;
 }
 
+// Potentiomètre
 
 void QAirSpeed::adjustmentChanged(int num, float value )
 {
@@ -126,7 +127,6 @@ void QAirSpeed::drawBackground(QPainter& painter )
         painter.drawEllipse( drawingRect() ) ;
         qfiBackground(painter, m_radius[AIRSPEED], 10);
 
-
         // zones colorées "Turbine"
 
         float radius = m_radius[AIRSPEED] - 35 ;
@@ -143,11 +143,14 @@ void QAirSpeed::drawBackground(QPainter& painter )
         span = m_step[AIRSPEED] * (( -1.1  ) / 3 - 0.8 ) ;
         qfiArc(painter, yellow, radius, start, span, 24 ) ;
 
-        //Potentiometre reglage
-        start += span - 98 ;
-        span = m_step[AIRSPEED] * ( value(POTEN) * (4.8/1000 )) ;
-        qfiArc(painter, red, radius, start, span, 24 ) ;
 
+        //Potentiometre reglage
+        start += span - 99 ;
+        span = m_step[AIRSPEED] * ( value(POTEN) * (4.8/1000 )) ;
+        qfiArc(painter, yellow, radius, start, span, 24 ) ;
+
+        //Trait rouge potentiometre
+        setThresholds(16+(value(POTEN)/200),111.5, AIRSPEED ) ;
 
         // graduations "AIRSPEED" de 0 à 50 km/h
 
@@ -160,8 +163,7 @@ void QAirSpeed::drawBackground(QPainter& painter )
         for ( int i = 0 ; i <= ( 2 ) ; ++i ) {
 
             if ( i % 5 == 0 ) {		w = 20 ; h = 20 ; }
-          /*  else if ( i % 5 == 0 ) {	w = 10 ; h = 60 ; } */
-           else {						w =  4 ; h = 40 ;
+                else {						w =  10 ; h = 40 ;
                 painter.setBrush( white ) ;}
 
             gRect = QRect(m_radius[AIRSPEED] - h - 10, -w / 2, h, w) ;
@@ -181,7 +183,7 @@ void QAirSpeed::drawBackground(QPainter& painter )
         for ( int i = 0 ; i <= ( 1+m_max[AIRSPEED] - m_min[AIRSPEED] ) ; ++i ) {
 
             if ( i % 5 == 0 ) {		w = 20 ; h = 70 ; }
-           else {						w =  4 ; h = 40 ; }
+                else {						w =  10 ; h = 40 ; }
 
             gRect = QRect(m_radius[AIRSPEED] - h - 10, -w / 2, h, w) ;
             gRadius = w / 3 ;
@@ -220,7 +222,7 @@ void QAirSpeed::drawBackground(QPainter& painter )
         }
 
 
-else {
+    else {
 
 
         float w, h ;		// épaisseur et longueur du trait de graduation
@@ -243,11 +245,6 @@ else {
 
         painter.setBrush( black1 ) ;
         painter.drawEllipse( drawingRect() ) ;
-       // float radius = m_radius[ROTOR] + 45 ;
-    /*
-        painter.setBrush( QBrush( black2 ) ) ;
-        painter.drawEllipse( QRect(-radius, -radius, 2 * radius, 2 * radius ) ) ;
-    */
         qfiBackground(painter, m_radius[AIRSPEED], 10);
 
         // zones colorées "Turbine"
@@ -266,10 +263,11 @@ else {
         span = m_step[AIRSPEED] * (( 5.5  ) / 9 ) ;
         qfiArc(painter, yellow, radius, start, span, 24 ) ;
 
-        //Potentiometre reglage
-        start += span - 128 ;
+        //Potentiometre reglage zone colorée rouge
+        start += span - 129 ;
         span = m_step[AIRSPEED] * ( value(POTEN) * (4.8/1000 )) ;
-        qfiArc(painter, red, radius, start, span, 24 ) ;
+        qfiArc(painter, yellow, radius, start, span, 24 ) ;
+
 
         // graduations "AIRSPEED" de 0 à 50 km/h
 
@@ -283,7 +281,7 @@ else {
 
             if ( i % 4 == 0 ) {		w = 20 ; h = 60 ; }
           /*  else if ( i % 5 == 0 ) {	w = 10 ; h = 60 ; } */
-           else {						w =  4 ; h = 40 ;
+           else {						w =  10 ; h = 40 ;
                 painter.setBrush( white ) ;}
 
             gRect = QRect(m_radius[AIRSPEED] - h - 10, -w / 2, h, w) ;
@@ -316,15 +314,16 @@ else {
 
         painter.save() ;
         painter.setBrush( red ) ;
-        painter.rotate(m_start[AIRSPEED] + m_step[AIRSPEED] * highThreshold(AIRSPEED)  ) ;
+        painter.rotate(-9+(value(POTEN)*74/1000)  ) ;
         painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
         painter.restore() ;
 
     }
     }
 
-    void QAirSpeed::drawForeground(QPainter& painter )
+void QAirSpeed::drawForeground(QPainter& painter )
     {
+#if 0
         float e ;	// épaisseur aiguille
         float lp ;	// longueur de la pointe
         float l1 ;	// longueur avant (coté pointe)
@@ -355,7 +354,22 @@ else {
 
         painter.save() ;
         painter.setPen(Qt::NoPen) ;
-        painter.setBrush( QColor(200, 200, 200, 120 ) ) ;
+        painter.setBrush( QColor(220, 220, 220, 120 ) ) ;
+
+#endif
+
+        float len ;						// longueur de l'aiguille orientée 0X+
+        QVector<QPointF> pts ;			// points de construction dans demi-plan 0Y+
+        QColor white(230,230,230) ;		// couleur de la pointe
+
+        // aiguille "Rotor"
+
+        len = 0.95 * m_radius[AIRSPEED] ;
+        pts.clear() ;
+        pts << QPointF( 0, 15 ) << QPointF( len - 60, 15 ) << QPointF( len, 0 ) ;
+
+        painter.save() ;
+
 
     float f=value(AIRSPEED);
 
@@ -377,8 +391,9 @@ else {
         }
 
 
+        qfiNeedle(painter, white, pts, 30, 0, 0.4 * len ) ;
 
-        painter.drawPath( path ) ;
+        //painter.drawPath( path ) ;
 
         painter.restore() ;
 
@@ -402,3 +417,4 @@ else {
         painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;
         painter.restore() ;
 }
+
