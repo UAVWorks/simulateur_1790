@@ -31,7 +31,7 @@ class bouton{
      	* transmetre au rapport du joystick.
      	*  \return l'etat du bouton.
      	*/
-		int value() const;
+		int value();
 	private:
 		void update();
 		int in;

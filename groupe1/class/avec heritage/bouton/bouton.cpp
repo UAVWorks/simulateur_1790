@@ -20,7 +20,7 @@ void bouton::update(){
 	Value = digitalRead(in);
 }
 
-int bouton::value() const{
+int bouton::value(){
 	bouton::update();
 	return Value ;
 }

@@ -27,7 +27,7 @@ void potar::update(){
 	Value = map(Valueanalog,min,max,-32768,32767);
 }
 
-int potar::value() {
+int potar::value() const{
 	potar::update();
 	return Value;
 }
