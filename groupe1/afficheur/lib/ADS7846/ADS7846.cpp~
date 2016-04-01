@@ -62,16 +62,16 @@
 # define LCD_HEIGHT     240
 #endif
 
-#ifndef CAL_POINTT_X1
-# define CAL_POINTT_X1   20
-# define CAL_POINTT_Y1   20
-# define CAL_POINTT1     {CAL_POINTT_X1,CAL_POINTT_Y1}
-# define CAL_POINTT_X2   LCD_WIDTH-20 //300
-# define CAL_POINTT_Y2   LCD_HEIGHT/2 //120
-# define CAL_POINTT2     {CAL_POINTT_X2,CAL_POINTT_Y2}
-# define CAL_POINTT_X3   LCD_WIDTH/2   //160
-# define CAL_POINTT_Y3   LCD_HEIGHT-20 //220
-# define CAL_POINTT3     {CAL_POINTT_X3,CAL_POINTT_Y3}
+#ifndef CAL_POINT_X1
+# define CAL_POINT_X1   20
+# define CAL_POINT_Y1   20
+# define CAL_POINT1     {CAL_POINT_X1,CAL_POINT_Y1}
+# define CAL_POINT_X2   LCD_WIDTH-20 //300
+# define CAL_POINT_Y2   LCD_HEIGHT/2 //120
+# define CAL_POINT2     {CAL_POINT_X2,CAL_POINT_Y2}
+# define CAL_POINT_X3   LCD_WIDTH/2   //160
+# define CAL_POINT_Y3   LCD_HEIGHT-20 //220
+# define CAL_POINT3     {CAL_POINT_X3,CAL_POINT_Y3}
 #endif
 
 #define CMD_START       0x80
@@ -169,7 +169,7 @@ void ADS7846::setRotation(uint_least16_t r)
 }
 
 
-uint_least8_t ADS7846::setCalibration(CAL_POINTT *lcd, CAL_POINTT *tp)
+uint_least8_t ADS7846::setCalibration(CAL_POINT *lcd, CAL_POINT *tp)
 {
   tp_matrix.div = ((tp[0].x - tp[2].x) * (tp[1].y - tp[2].y)) -
                   ((tp[1].x - tp[2].x) * (tp[0].y - tp[2].y));
@@ -208,7 +208,7 @@ uint_least8_t ADS7846::writeCalibration(uint16_t eeprom_addr)
   if(tp_matrix.div != 0)
   {
     eeprom_write_byte((uint8_t*)eeprom_addr++, 0x55);
-    eeprom_write_block((void*)&tp_matrix, (void*)eeprom_addr, sizeof(CAL_MATRIXT));
+    eeprom_write_block((void*)&tp_matrix, (void*)eeprom_addr, sizeof(CAL_MATRIX));
     return 1;
   }
 
@@ -223,7 +223,7 @@ uint_least8_t ADS7846::readCalibration(uint16_t eeprom_addr)
   c = eeprom_read_byte((uint8_t*)eeprom_addr++);
   if(c == 0x55)
   {
-    eeprom_read_block((void*)&tp_matrix, (void*)eeprom_addr, sizeof(CAL_MATRIXT));
+    eeprom_read_block((void*)&tp_matrix, (void*)eeprom_addr, sizeof(CAL_MATRIX));
     return 1;
   }
 
@@ -234,8 +234,8 @@ uint_least8_t ADS7846::readCalibration(uint16_t eeprom_addr)
 /*uint_least8_t ADS7846::doCalibration(MI0283QT2 *lcd, uint16_t eeprom_addr, uint_least8_t check_eeprom) //example touch panel calibration routine
 {
   uint_least8_t i;
-  CAL_POINTT lcd_points[3] = {CAL_POINTT1, CAL_POINTT2, CAL_POINTT3}; //calibration point postions
-  CAL_POINTT tp_points[3];
+  CAL_POINT lcd_points[3] = {CAL_POINT1, CAL_POINT2, CAL_POINT3}; //calibration point postions
+  CAL_POINT tp_points[3];
 
   //calibration data in EEPROM?
   if(readCalibration(eeprom_addr) && check_eeprom)
@@ -298,8 +298,8 @@ uint_least8_t ADS7846::readCalibration(uint16_t eeprom_addr)
 /*uint_least8_t ADS7846::doCalibration(MI0283QT9 *lcd, uint16_t eeprom_addr, uint_least8_t check_eeprom) //example touch panel calibration routine
 {
   uint_least8_t i;
-  CAL_POINTT lcd_points[3] = {CAL_POINTT1, CAL_POINTT2, CAL_POINTT3}; //calibration point postions
-  CAL_POINTT tp_points[3];
+  CAL_POINT lcd_points[3] = {CAL_POINT1, CAL_POINT2, CAL_POINT3}; //calibration point postions
+  CAL_POINT tp_points[3];
 
   //calibration data in EEPROM?
   if(readCalibration(eeprom_addr) && check_eeprom)
