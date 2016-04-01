@@ -1,15 +1,21 @@
 #include "Dataref.h"
 
 Dataref::Dataref(const QString& path, int freq) {
-
+	this->
+	this->m_rrefFreq=freq ;
 }
 
 Dataref::Dataref(int iId, int aId, bool input) {
-
+	this->m_id=iId;
+	this->m_id=aId;
+	this->
 }
 
 Dataref::Dataref(const QString& input, const QString& output, float scale, float offset) {
-
+	this->
+	this->
+	this->m_scale=scale;
+	this->m_offset=offset;
 }
 
 
