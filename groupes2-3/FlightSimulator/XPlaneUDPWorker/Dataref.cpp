@@ -20,20 +20,27 @@ Dataref::Dataref(const QString& input, const QString& output, float scale, float
 
 
 void bindToInstrument(int iId, int aId, float scale, float offset) {
-
+	this->m_instrumentId=iId;
+	this->m_instrumentAxis=aId;
+	this->m_scale=scale;
+	this->m_offset=offset;
 }
 
 void bindToDigitalIo(const QString& name, float scale, float offset) {
-
+	this->m_sourceName=name;
+	this->m_scale=scale;
+	this->m_offset=offset;
 }
 
 void bindToAnalogIo(const QString& name, float scale, float offset) {
-
+	this->m_sourceName=name;
+	this->m_scale=scale;
+	this->m_offset=offset;
 }
 
 
 QByteArray xplaneRrefRequest() const {
-
+	
 }
 
 QByteArray xplaneRrefStop() const {
