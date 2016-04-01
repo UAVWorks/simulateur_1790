@@ -14,7 +14,7 @@
 #include <QFile>
 #include <QString>
 #include <QTextStream>
-
+#include <dataref.h>
 
 class test : public QWidget, private Ui::test
 {
@@ -35,6 +35,7 @@ public:
 private :
     QString configFile ;
     QList<QamFlightInstrument *> QListQFI ;
+    QList<Dataref *> QListDat ;
 
 };
 
