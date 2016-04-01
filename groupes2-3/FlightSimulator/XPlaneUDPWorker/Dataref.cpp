@@ -1,7 +1,7 @@
 #include "Dataref.h"
 
 Dataref::Dataref(const QString& path, int freq) {
-	this->
+	this->m_sourceName=path ;
 	this->m_rrefFreq=freq ;
 }
 
