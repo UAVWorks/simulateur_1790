@@ -33,13 +33,13 @@ void loop()
 void deplacement(){
   if((pressButton==3) && (flagD < 3)){
     flagD++;
-    affiche();}
+    affiche1();}
   if((pressButton==2) && (flagD > 1)){
     flagD--;
-    affiche();}
+    affiche1();}
 }
 
-void affiche(){
+void affiche1(){
   if (flagD == 1)
     cyclique();
   if (flagD == 2)
