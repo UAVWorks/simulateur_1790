@@ -20,31 +20,29 @@ Dataref::Dataref(const QString& input, const QString& output, float scale, float
 
 
 void bindToInstrument(int iId, int aId, float scale, float offset) {
-	this->m_instrumentId=iId;
-	this->m_instrumentAxis=aId;
-	this->m_scale=scale;
-	this->m_offset=offset;
+
 }
 
 void bindToDigitalIo(const QString& name, float scale, float offset) {
-	this->m_sourceName=name;
-	this->m_scale=scale;
-	this->m_offset=offset;
-}
-
-void bindToAnalogIo(const QString& name, float scale, float offset) {
-	this->m_sourceName=name;
-	this->m_scale=scale;
-	this->m_offset=offset;
-}
-
-
-QByteArray xplaneRrefRequest() const {
 	
 }
 
-QByteArray xplaneRrefStop() const {
+void bindToAnalogIo(const QString& name, float scale, float offset) {
 
+}
+
+QByteArray xplaneRrefRequest() const {
+	QByteArray trame;
+	trame[0]="RREF";
+	trame[4]=0;
+	trame[5]=this->freq;
+	trame[9]=this->id;
+	trame[13]="sim/cockpit2/gauges/indicators/altitude_ft_pilot";
+	return trame;
+}
+
+QByteArray xplaneRrefStop() const {
+	
 }
 
 QByteArray xplaneDref()(float value) const {
