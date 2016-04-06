@@ -33,16 +33,19 @@ void bindToAnalogIo(const QString& name, float scale, float offset) {
 
 QByteArray xplaneRrefRequest() const {
 	QByteArray trame;
-	trame[0]="RREF";
-	trame[4]=0;
-	trame[5]=this->freq;
-	trame[9]=this->id;
-	trame[13]="sim/cockpit2/gauges/indicators/altitude_ft_pilot";
+	trame.append("RREF") ;
+	trame.append((char)0);
+	trame.append( (char*)(&m_rrefFreq), 4 );
+	trame.append( (char*)(&m_id), 4 );
+	
+	QString path("sim/cockpit2/gauges/indicators/altitude_ft_pilot") ;
+	trame.append(path) ;
+	trame.append( QByteArray(400 - path.length() , (char)0 ) ) ;
 	return trame;
 }
 
 QByteArray xplaneRrefStop() const {
-	
+
 }
 
 QByteArray xplaneDref()(float value) const {
