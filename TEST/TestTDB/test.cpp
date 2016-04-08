@@ -62,7 +62,9 @@ bool test::loadConf(QString &csv){
                     if (parse[2]== "QHA")
                         createQHA(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
                 }
-
+            }
+            if (parse[0] == "RREF_QFI") {
+                createRrefQfi(parse[1].toInt(),parse[2].toInt(),parse[3],parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
             }
             line = in.readLine() ;
             nline++ ;
@@ -120,4 +122,8 @@ void test::createQHA(int id, int x, int y, int width, int height){
     setQFI( x, y, width, height, qha) ;
     QListQFI[id] = qha ;
     qha->show();
+}
+
+void test::createRrefQfi(int iId, int aId, QString &path, int freq, int scale, int offset){
+    DataRef * mb = new DataRef( path)
 }

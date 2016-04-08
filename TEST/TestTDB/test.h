@@ -15,6 +15,7 @@
 #include <QString>
 #include <QTextStream>
 #include <dataref.h>
+#include <xplaneudpworker.h>
 
 class test : public QWidget, private Ui::test
 {
@@ -30,6 +31,7 @@ public:
     void createTachymeter(int id, int x, int y, int widht, int height) ;
     void createQHA(int id, int x, int y, int width, int height) ;
     void setQFI(int x, int y, int width, int height, QamFlightInstrument* QFI) ;
+    void createRrefQfi(int iId, int aId, QString path,int freq = 0, int scale, int offset ) ;
     bool loadConf(QString& file) ;
 
 private :
