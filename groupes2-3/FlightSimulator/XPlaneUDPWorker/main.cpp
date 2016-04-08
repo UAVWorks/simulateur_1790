@@ -1,9 +1,11 @@
+#include "xplaneio.h"
+#include <QApplication>
 
-
-int main(int argc, char **argv)
+int main(int argc, char *argv[] )
 {
+	QApplication a(argc, argv) ;
+    XplaneIO w ;
+	w.show() ;
 
-    app();
-
-    return EXIT_SUCCESS;
-}   
+	return a.exec() ;
+}
