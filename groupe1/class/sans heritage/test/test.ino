@@ -1,7 +1,7 @@
 #include <potar.h>
-#include <memsic.h>
+//#include <memsic.h>
 
-potar 	collectif(1);
+potar 	collectif(0);
 /*potar 	pallonier(0);
 memsic 	cyclique(2,3);*/
 

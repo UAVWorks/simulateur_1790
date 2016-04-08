@@ -21,9 +21,9 @@ void potar::update(){
 	Valueanalog = analogRead(in);
 
     if ( Valueanalog < min)
-    	min = Value ;
+    	min = Valueanalog ;
     if ( Valueanalog> max)
-        max = Value ;
+        max = Valueanalog ;
 	Value = map(Valueanalog,min,max,-32768,32767);
 }
 
