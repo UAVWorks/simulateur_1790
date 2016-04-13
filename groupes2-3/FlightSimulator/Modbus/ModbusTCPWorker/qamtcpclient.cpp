@@ -1,37 +1,37 @@
-/* ----------------------------------------------------------------------------
- |	Nom :			qamtcpclient.cpp
- |	Projet :		Qam Modbus over TCP/IP
- |	Sujet :     	Client TCP
- |  Auteur :		Alain Menu
- |	Version :		1.0
- |	Création :		janvier 2014
- |	Mise à jour :	09/02/2014
- |	Fabrication :	Qt4 / Qt5 OpenSource (Desktop)
- + ------------------------------------------------------------------------- */
-/*
- |	Copyright (c) 2014 by Alain Menu <alain.menu@ac-creteil.fr>
- |
- |  This file is part of "Qam Modbus over TCP/IP project"
- |
- |  This program is free software ;  you can  redistribute it and/or  modify it
- |  under the terms of the  GNU General Public License as published by the Free
- |  Software Foundation ; either version 2 of the License, or  (at your option)
- |  any later version.
- |
- |  This program is distributed in the hope that it will be useful, but WITHOUT
- |  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
- |  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
- |  more details < http://www.gnu.org/licenses/gpl.txt >.
- + ------------------------------------------------------------------------- */
+/*  ---------------------------------------------------------------------------
+ *  filename    :   qamtcpclient.cpp
+ *  description :   IMPLEMENTATION de la classe QamTcpClient
+ *
+ *	project     :	QamSockets Library
+ *  start date  :   fév 2006
+ *  ---------------------------------------------------------------------------
+ *  Copyright 2006-2016 by Alain Menu   <alain.menu@ac-creteil.fr>
+ *
+ *  This file is part of "QamSockets Library"
+ *
+ *  This program is free software ;  you can  redistribute it and/or  modify it
+ *  under the terms of the  GNU General Public License as published by the Free
+ *  Software Foundation ; either version 3 of the License, or  (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
+ *  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
+ *  more details.
+ *
+ *	You should have  received  a copy of the  GNU General Public License  along
+ *	with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  ---------------------------------------------------------------------------
+ */
 
 #include "qamtcpclient.h"
 #include <QHostAddress>
 
 /*!
- * Constructeur d'un client TCP avec l'objet serveur à utiliser comme émetteur de
- * requêtes et destinataire des réponses.
+ * Constructeur d'un client TCP avec l'objet serveur métier à utiliser comme 
+ * émetteur de requêtes et destinataire des réponses.
  * \param server : serveur "métier" à utiliser.
- * \param parent :: parent Qt.
+ * \param parent : parent Qt.
  */
 
 QamTcpClient::QamTcpClient(QamAbstractServer* server, QObject* parent )
@@ -49,8 +49,8 @@ QamTcpClient::QamTcpClient(QamAbstractServer* server, QObject* parent )
 
 	if ( m_server ) {
 
-		connect( this,		SIGNAL( sockReceive(QByteArray) ),
-				 m_server,	SLOT(   response(QByteArray) ) ) ;
+		connect( this,		SIGNAL( sockReceived(QByteArray) ),
+				 m_server,	SLOT(   responseFromServer(QByteArray) ) ) ;
 
 		connect( m_server,	SIGNAL( request(QByteArray) ),
 				 this,		SLOT(   sockWrite(QByteArray) ) ) ;
@@ -117,7 +117,7 @@ void QamTcpClient::sockDisconnected()
 void QamTcpClient::sockRead()
 {
 	QByteArray  data = this->readAll() ;
-	emit sockReceive( data ) ;
+	emit sockReceived( data ) ;
 }
 
 void QamTcpClient::sockError(QAbstractSocket::SocketError error )

@@ -147,7 +147,7 @@ qDebug() << "XPlaneUdpWorker::received()" ;
 		if ( p->id == m_rrefWaitingId )	m_rrefWaitingId = 0 ;
 
 		emit rrefReceived(p->id, p->value ) ;
-qDebug() << "recv" << p->id << p->value ;
+        qDebug() << "recv" << p->id << p->value ;
 	}
 }
 

@@ -1,6 +1,6 @@
 /*  ---------------------------------------------------------------------------
  *  filename    :   qvariometer.cpp
- *  description :   IMPLEMENTATION de la classe QamTachymeter
+ *  description :   IMPLEMENTATION de la classe QamVariometer
  *
  *	project     :	Widgets "Flight Instrument"
  *  start date  :   octobre 2015
@@ -27,13 +27,13 @@
 #include "qvariometer.h"
 
 #include <QtMath>
+#include <QLabel>
 
-QamTachymeter::QamTachymeter(QWidget* parent ) : QamFlightInstrument(parent)
+QamVariometer::QamVariometer(QWidget* parent ) : QamFlightInstrument(parent)
 {
     setLabel(QString(" Vertical Speed "), VARIOMETER) ;
     setUnit(QString("ft/min x100"), VARIOMETER) ;
     setMinMax(-20, 20, VARIOMETER) ;
-    //setThresholds(32000, 35000, VARIOMETER) ; djspfjdsjf
     setValue(0, VARIOMETER) ;
 
     m_radius[VARIOMETER] = QFI_RADIUS ;
@@ -43,24 +43,36 @@ QamTachymeter::QamTachymeter(QWidget* parent ) : QamFlightInstrument(parent)
     m_max[VARIOMETER]    = 20 ;
     m_step[VARIOMETER]   = m_span[VARIOMETER] / ( m_max[VARIOMETER] - m_min[VARIOMETER] ) ;
 
+    // changeunit
+
+    setLabel(QString("Vertical Speed"), CHANGEUNIT);
+    setUnit(QString("m/s"), CHANGEUNIT) ;
+    setMinMax(-10, 10, CHANGEUNIT) ;
+    setValue(0, CHANGEUNIT) ;
+
+    m_radius[CHANGEUNIT] = QFI_RADIUS ;
+    m_start[CHANGEUNIT]  = 10 ;
+    m_span[CHANGEUNIT]   = 340 ;
+    m_min[CHANGEUNIT]    = -10 ;
+    m_max[CHANGEUNIT]    = 10 ;
+    m_step[CHANGEUNIT]   = m_span[CHANGEUNIT] / ( m_max[CHANGEUNIT] - m_min[CHANGEUNIT] ) ;
+
 //	animation des aiguilles (pour tests)
 
     setAdjustable(1, 0, VARIOMETER) ;
-    connect(this, SIGNAL( selectChanged() ), this, SLOT( selectChanged() ) ) ;
 }
 
 // interception clic sur BP coin inférieur droit
 
-void QamTachymeter::selectChanged()
+void QamVariometer::selectPressed(int num, bool longClic)
 {
-    connect(this, SIGNAL( clicked() ), this, SIGNAL( restore(VARIOMETER) ) ) ;
-    setValue(VARIOMETER,0);
+    m_isUnitMS = !m_isUnitMS;
     updateWithBackground();
 }
 
 // dessin d'un arc de cercle ép. 24 px, bouts arrondis
 
-void QamTachymeter::showArc(QPainter& painter, QColor& color, float radius, float start, float span )
+void QamVariometer::showArc(QPainter& painter, QColor& color, float radius, float start, float span )
 {
     painter.save() ;
     QPen pen ;
@@ -74,7 +86,7 @@ void QamTachymeter::showArc(QPainter& painter, QColor& color, float radius, floa
 
 // dessin d'un texte, positionné par son centre
 
-void QamTachymeter::showText(QPainter& painter, QFont& font, QColor& color, const QPoint& center, const QString& s )
+void QamVariometer::showText(QPainter& painter, QFont& font, QColor& color, const QPoint& center, const QString& s )
 {
     painter.save() ;
     painter.setFont( font ) ;
@@ -85,7 +97,7 @@ void QamTachymeter::showText(QPainter& painter, QFont& font, QColor& color, cons
     painter.restore() ;
 }
 
-void QamTachymeter::drawBackground(QPainter& painter )
+void QamVariometer::drawBackground(QPainter& painter )
 {
     float w, h ;		// épaisseur et longueur du trait de graduation
     QRect gRect ;		// rectangle "trait graduation"
@@ -104,77 +116,107 @@ void QamTachymeter::drawBackground(QPainter& painter )
     QFont	fo4("Arial", 45 ) ;
     QFont	fo5("Arial", 35 ) ;
 
+    QRectF rectangle(10.0, 20.0, 80.0, 60.0);
+    int startAngle = 30 * 16;
+    int spanAngle = 120 * 16;
+
+    painter.drawArc(rectangle, startAngle, spanAngle);
+
+    if (m_isUnitMS) {
+
+        // fond
+
+        painter.setBrush( black1 ) ;
+        painter.drawEllipse( drawingRect() ) ;
+
+        painter.setBrush( QBrush( black2 ) ) ;
+        qfiBackground(painter, m_radius[VARIOMETER]);
+
+        // graduations
+
+        painter.save() ;
+        painter.setBrush( white ) ;
+
+        painter.rotate( m_start[VARIOMETER] ) ;
+
+        for ( int i = 0 ; i <= ( m_max[VARIOMETER] - m_min[VARIOMETER] ) ; ++i ) {
+
+            if ( i % 5 == 0 ) {		w = 10 ; h = 60 ; }
+            else {						w =  4 ; h = 40 ; }
+
+            gRect = QRect(m_radius[VARIOMETER] - h - 10, -w / 2, h, w) ;
+            gRadius = w / 3 ;
+            painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
+            painter.rotate( m_step[VARIOMETER] ) ;
+        }
+        painter.restore() ;
+
+        // sérigraphie
+
+        for ( int i = 20 ; i >= ( 0 ) ; i += -5 ) {
+            float alpha = -qDegreesToRadians( 180 + i * m_step[VARIOMETER] ) ;
+            float r = m_radius[VARIOMETER] - 130 ;
+            showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
+        }
+
+        for ( int i = 0 ; i <= ( 20 ) ; i += 5 ) {
+            float alpha = qDegreesToRadians( 180 + i * m_step[VARIOMETER] ) ;
+            float r = m_radius[VARIOMETER] - 130 ;
+            showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
+        }
+        showText(painter, fo2, white, QPoint( 0, -0.3 * m_radius[VARIOMETER] ), label(VARIOMETER) ) ;
+        showText(painter, fo3, white, QPoint( 0, 0.4 * m_radius[VARIOMETER] ), unit(VARIOMETER) ) ;
+
+    }
+
+else {
     // fond
 
     painter.setBrush( black1 ) ;
     painter.drawEllipse( drawingRect() ) ;
 
     painter.setBrush( QBrush( black2 ) ) ;
-    qfiBackground(painter, m_radius[VARIOMETER]);
+    qfiBackground(painter, m_radius[CHANGEUNIT]);
 
     // graduations
 
     painter.save() ;
     painter.setBrush( white ) ;
 
-    painter.rotate( m_start[VARIOMETER] ) ;
+    painter.rotate( m_start[CHANGEUNIT] ) ;
 
-    for ( int i = 0 ; i <= ( m_max[VARIOMETER] - m_min[VARIOMETER] ) ; ++i ) {
+    for ( int i = 0 ; i <= ( m_max[CHANGEUNIT] - m_min[CHANGEUNIT] ) ; ++i ) {
 
         if ( i % 5 == 0 ) {		w = 10 ; h = 60 ; }
         else {						w =  4 ; h = 40 ; }
 
-        gRect = QRect(m_radius[VARIOMETER] - h - 10, -w / 2, h, w) ;
+        gRect = QRect(m_radius[CHANGEUNIT] - h - 10, -w / 2, h, w) ;
         gRadius = w / 3 ;
         painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
-        painter.rotate( m_step[VARIOMETER] ) ;
+        painter.rotate( m_step[CHANGEUNIT] ) ;
     }
     painter.restore() ;
 
     // sérigraphie
 
-    for ( int i = 20 ; i >= ( 0 ) ; i += -5 ) {
-        float alpha = -qDegreesToRadians( 180 + i * m_step[VARIOMETER] ) ;
-        float r = m_radius[VARIOMETER] - 130 ;
-        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
+    for ( int i = 10 ; i >= ( 0 ) ; i += -5 ) {
+        float alpha = -qDegreesToRadians( 180 + i * m_step[CHANGEUNIT] ) ;
+        float r = m_radius[CHANGEUNIT] - 130 ;
+        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i/2) ) ;
     }
 
     for ( int i = 0 ; i <= ( 20 ) ; i += 5 ) {
-        float alpha = qDegreesToRadians( 180 + i * m_step[VARIOMETER] ) ;
-        float r = m_radius[VARIOMETER] - 130 ;
-        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
+        float alpha = qDegreesToRadians( 180 + i * m_step[CHANGEUNIT] ) ;
+        float r = m_radius[CHANGEUNIT] - 130 ;
+        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i/2) ) ;
     }
-    showText(painter, fo2, white, QPoint( 0, -0.3 * m_radius[VARIOMETER] ), label(VARIOMETER) ) ;
-    showText(painter, fo3, white, QPoint( 0, 0.4 * m_radius[VARIOMETER] ), unit(VARIOMETER) ) ;
+    showText(painter, fo2, white, QPoint( 0, -0.3 * m_radius[CHANGEUNIT] ), label(CHANGEUNIT) ) ;
+    showText(painter, fo3, white, QPoint( 0, 0.4 * m_radius[CHANGEUNIT] ), unit(CHANGEUNIT) ) ;
 
-    // seuils
-
-    /*
-    w = 20 ; h = 90 ;
-    gRect = QRect(m_radius[VARIOMETER] - h - 10, -w / 2, h, w ) ;
-    gRadius = w / 3 ;
-
-    painter.save() ;
-    painter.setBrush( red ) ;
-    painter.rotate(m_start[VARIOMETER] + m_step[VARIOMETER] * lowThreshold(ALTIMETER) / 1000 ) ;
-    painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
-    painter.restore() ;
-
-    painter.save() ;
-    painter.setBrush( red ) ;
-    painter.rotate(m_start[VARIOMETER] + m_step[VARIOMETER] * highThreshold(ALTIMETER) / 1000 ) ;
-    painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
-    painter.restore() ;
-
-
-    start += span + 4 ;
-    span = m_step[VARIOMETER] * ( ( ( highThreshold(ALTIMETER) - lowThreshold(ALTIMETER) ) / 1000 ) / 3 - 0.8 ) ;
-    showArc(painter, yellow, radius, start, span ) ;
-
-   */
 }
+    }
 
-void QamTachymeter::drawForeground(QPainter& painter )
+void QamVariometer::drawForeground(QPainter& painter )
 {
     float e ;	// épaisseur aiguille
     float lp ;	// longueur de la pointe
@@ -187,10 +229,10 @@ void QamTachymeter::drawForeground(QPainter& painter )
 
     // aiguille
 
-    e = 25 ;
-    lp = 1.5 * e ;
-    l1 = m_radius[VARIOMETER] - 140 ;
-    l2 = m_radius[VARIOMETER] - 370 ;
+    e = 22 ;
+    lp = 1.3 * e ;
+    l1 = m_radius[VARIOMETER] - 160 ;
+    l2 = m_radius[VARIOMETER] - 410 ;
     r1 = 10 ;
     r2 = 0 ;
 
@@ -215,7 +257,7 @@ void QamTachymeter::drawForeground(QPainter& painter )
 
     // axe central
 
-    int axeRadius = 25;
+    int axeRadius = 20;
 
     QConicalGradient	cg(QPointF(0.0, 0.0 ), 360 ) ;
     cg.setColorAt(0.0, Qt::white ) ;
@@ -232,5 +274,6 @@ void QamTachymeter::drawForeground(QPainter& painter )
     painter.setPen(Qt::NoPen ) ;
     painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;
     painter.restore() ;
+
 }
 

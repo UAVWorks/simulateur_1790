@@ -1,28 +1,28 @@
-/* ----------------------------------------------------------------------------
- |	Nom :			qamtcpclient.h
- |	Projet :		Qam Modbus over TCP/IP
- |	Sujet :     	Client TCP
- |  Auteur :		Alain Menu
- |	Version :		1.0
- |	Création :		janvier 2014
- |	Mise à jour :	09/02/2014
- |	Fabrication :	Qt4 / Qt5 OpenSource (Desktop)
- + ------------------------------------------------------------------------- */
-/*
- |	Copyright (c) 2014 by Alain Menu <alain.menu@ac-creteil.fr>
- |
- |  This file is part of "Qam Modbus over TCP/IP project"
- |
- |  This program is free software ;  you can  redistribute it and/or  modify it
- |  under the terms of the  GNU General Public License as published by the Free
- |  Software Foundation ; either version 2 of the License, or  (at your option)
- |  any later version.
- |
- |  This program is distributed in the hope that it will be useful, but WITHOUT
- |  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
- |  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
- |  more details < http://www.gnu.org/licenses/gpl.txt >.
- + ------------------------------------------------------------------------- */
+/*  ---------------------------------------------------------------------------
+ *  filename    :   qamtcpclient.h
+ *  description :   INTERFACE de la classe QamTcpClient
+ *
+ *	project     :	QamSockets Library
+ *  start date  :   fév 2006
+ *  ---------------------------------------------------------------------------
+ *  Copyright 2006-2016 by Alain Menu   <alain.menu@ac-creteil.fr>
+ *
+ *  This file is part of "QamSockets Library"
+ *
+ *  This program is free software ;  you can  redistribute it and/or  modify it
+ *  under the terms of the  GNU General Public License as published by the Free
+ *  Software Foundation ; either version 3 of the License, or  (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
+ *  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
+ *  more details.
+ *
+ *	You should have  received  a copy of the  GNU General Public License  along
+ *	with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  ---------------------------------------------------------------------------
+ */
 
 #ifndef QAMTCPCLIENT_H
 #define QAMTCPCLIENT_H
@@ -41,13 +41,10 @@
  être assurée par un objet répondant au modèle de développement spécifié par la
  classe QamAbstractServer. Dans ce cas, le client TCP met en oeuvre les
  connexions signaux-slots nécessaires à partir des membres spécifiés par la
- classe modèle QamAbstractServer :
- - signal request() : demande d'émisssion de données ;
- - slot response() : connecteur de réception de données ;
- - slot networkInfo() : connecteur destinataire des messages de suivi ou d'erreur.
-
+ classe modèle (voir documentation de QamAbstractServer).
+ 
  QamTcpClient peut aussi être utilisée sans objet dérivé de QamAbstractServer.
- L'application cliente doit alors intercepter les signaux sockReceive() et
+ L'application cliente doit alors intercepter les signaux sockReceived() et
  sockInfo() pour la réception de données et la remontée d'informations. L'émission
  est réalisée au moyen de sockWrite().
 
@@ -55,6 +52,7 @@
  respectivement le démarrage et l'arrêt de la connexion.
  */
 
+#include "_ABOUT"
 #include <QTcpSocket>
 #include "qamabstractserver.h"
 
@@ -73,7 +71,7 @@ class QamTcpClient : public QTcpSocket
 
   signals :
 	/*! Signal émis lors de la réception de données sur la socket TCP. */
-	void sockReceive(const QByteArray& ) ;
+	void sockReceived(const QByteArray& ) ;
 	/*! Signal de remontée d'informations liées à l'état de la connexion. */
 	void sockInfo(const QString& ) ;
 

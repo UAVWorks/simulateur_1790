@@ -79,7 +79,7 @@ DataRef::DataRef(int iId, int aId, bool input )
 
 DataRef::DataRef(const QString& input, const QString& output, float scale, float offset )
 	: m_scale( scale )
-    , m_o;ffset( offset )
+    , m_offset( offset )
 	, m_lastValue( UNLIKELY_FLOAT )
 {
 	m_id = ++m_idProvider ;	// 1..*

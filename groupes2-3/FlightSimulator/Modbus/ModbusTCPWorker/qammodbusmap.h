@@ -1,35 +1,29 @@
-/* ----------------------------------------------------------------------------
- |	Nom :			qammodbusmap.h
- |	Projet :		Qam Modbus over TCP/IP
- |	Sujet :     	Modélisation des tables primaires Modbus
- |  Auteur :		Alain Menu
- |	Version :		1.4
- |	Création :		janvier 2014
- |	Mise à jour :	06/03/2014
- |	Fabrication :	Qt4 / Qt5 OpenSource (Desktop)
- + ------------------------------------------------------------------------- */
-/*
- |	Copyright (c) 2014 by Alain Menu <alain.menu@ac-creteil.fr>
- |
- |  This file is part of "Qam Modbus over TCP/IP project"
- |
- |  This program is free software ;  you can  redistribute it and/or  modify it
- |  under the terms of the  GNU General Public License as published by the Free
- |  Software Foundation ; either version 2 of the License, or  (at your option)
- |  any later version.
- |
- |  This program is distributed in the hope that it will be useful, but WITHOUT
- |  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
- |  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
- |  more details < http://www.gnu.org/licenses/gpl.txt >.
- + ------------------------------------------------------------------------- */
-
-// v1.3 :	première mise en exploitation
-// v1.4 :	loadMap() : ajout codec UTF-8 pour lecture CSV
-//			loadMap() : modif. pour accepter CSV avec EOL = "\r" ou "\r\n" ou "\n"
-//			addData() : champ display forcé sous la forme Xxxx
-//			nameList() : ajout option withComposite
-//			(utilisé par QamModbusMapViewer::setModbusTable())
+/*  ---------------------------------------------------------------------------
+ *  filename    :   qammodbusmap.h
+ *  description :   INTERFACE de la classe QamModbusMap
+ *					Modélisation des tables primaires Modbus
+ *
+ *	project     :	Qam Modbus over TCP/IP
+ *  start date  :   janvier 2014
+ *  ---------------------------------------------------------------------------
+ *  Copyright 2014-2016 by Alain Menu   <alain.menu@ac-creteil.fr>
+ *
+ *  This file is part of "Qam Modbus over IP Project"
+ *
+ *  This program is free software ;  you can  redistribute it and/or  modify it
+ *  under the terms of the  GNU General Public License as published by the Free
+ *  Software Foundation ; either version 3 of the License, or  (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
+ *  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
+ *  more details.
+ *
+ *	You should have  received  a copy of the  GNU General Public License  along
+ *	with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  ---------------------------------------------------------------------------
+ */
 
 #ifndef QAMMODBUSMAP_H
 #define QAMMODBUSMAP_H
@@ -134,7 +128,9 @@ chacune un certain nombre de bits de leur donnée primaire.
 40704 de la table Holding Registers.
  */
 
+//#include "qamabstractserver.h"
 #include "qamabstractserver.h"
+
 #include "qammodbusdata.h"
 #include <QMutex>
 #include <QEventLoop>
@@ -144,8 +140,9 @@ chacune un certain nombre de bits de leur donnée primaire.
 #include <QFileInfo>
 #include <QTextStream>
 
-#define MODBUSMAP_VERSION_MAJOR	1
-#define MODBUSMAP_VERSION_MINOR	4
+//#define MODBUSMAP_VERSION_MAJOR	1
+//#define MODBUSMAP_VERSION_MINOR	4
+#include "_ABOUT"
 
 #define	MODBUSMAP_ENTRY_SIZE	7
 
@@ -207,7 +204,8 @@ class QamModbusMap : public QamAbstractServer
 	// ---------------------------------------------------------------------------
 
   public:
-	virtual QByteArray responseToRequest(QByteArray& request ) ;
+//	virtual QByteArray responseToRequest(QByteArray& request ) ;
+	virtual QByteArray responseToClientRequest(QByteArray& request ) ;
   private:
 	bool isRangeAvailable(PrimaryTable table, quint16 addrBegin, quint16 addrEnd ) ;
 	QByteArray	exceptionResponse(QByteArray& request, quint8 exceptionCode, const QString& message ) ;
@@ -216,7 +214,8 @@ class QamModbusMap : public QamAbstractServer
 	// ---------------------------------------------------------------------------
 
   public slots:
-	virtual void response(QByteArray response ) ;
+//	virtual void response(QByteArray response ) ;
+	virtual void responseFromServer(QByteArray response ) ;
 
   private:
 	virtual void setServerAvailable(bool serverAvailable ) ;

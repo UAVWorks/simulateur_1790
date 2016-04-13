@@ -86,7 +86,7 @@ class DataRef
 	
 	QByteArray xplaneRrefRequest() const ;
 	QByteArray xplaneRrefStop() const ;
-    QByteAr;ray xplaneDref(float value ) const ;
+    QByteArray xplaneDref(float value ) const ;
 	QByteArray xplaneCmnd(bool inputState = true ) const ;
 	
 	int id() const ;

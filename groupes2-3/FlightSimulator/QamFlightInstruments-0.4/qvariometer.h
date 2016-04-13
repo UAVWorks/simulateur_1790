@@ -1,6 +1,6 @@
         /*  ---------------------------------------------------------------------------
-     *  filename    :   qamtachymeter.h
-     *  description :   INTERFACE de la classe QamTachymeter
+     *  filename    :   QamVariometer.h
+     *  description :   INTERFACE de la classe QamVariometer
      *
      *	project     :	Widgets "Flight Instrument"
      *  start date  :   octobre 2015
@@ -26,26 +26,26 @@
 
     // Source: Indicateur Tachymétrique KEHA Präcitechnik AMA ref. 8-436-AB type 901F
      // salut 
-    #ifndef QAMTACHYMETER_H
-    #define QAMTACHYMETER_H
+    #ifndef QAMVARIOMETER_H
+    #define QAMVARIOMETER_H
 
     #include "qamflightinstrument.h"
 
-    class QamTachymeter : public QamFlightInstrument
+    class QamVariometer : public QamFlightInstrument
     {
         Q_OBJECT
 
       public:
-        explicit QamTachymeter(QWidget* parent = 0 ) ;
+        explicit QamVariometer(QWidget* parent = 0 ) ;
 
-        enum Axis{ VARIOMETER } ;
+        enum Axis{ VARIOMETER, CHANGEUNIT } ;
 
       protected:
         virtual void drawBackground(QPainter& painter ) ;
         virtual void drawForeground(QPainter& painter ) ;
 
       private slots:
-        void selectChanged() ;
+        virtual void selectPressed(int num, bool longClic = false ) ;	// pour pilotage par BP externe
 
       private:
         void showArc(QPainter&, QColor&, float, float, float ) ;
@@ -58,6 +58,7 @@
         float	m_step[2] ;		// pas des graduations
         float	m_min[2] ;		// graduation minimale
         float	m_max[2] ; 		// graduation maximale
+        bool    m_isUnitMS;     // changement de valeur du variomètre
     } ;
 
     #endif
