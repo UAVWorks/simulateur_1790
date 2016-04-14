@@ -1,28 +1,29 @@
-/* ----------------------------------------------------------------------------
- |	Nom :			qammodbusmapviewer.cpp
- |	Projet :		Qam Modbus over TCP/IP
- |	Sujet :     	Visualiseur arborescent d'un objet QamModbusMap
- |  Auteur :		Alain Menu
- |	Version :		1.4
- |	Création :		janvier 2014
- |	Mise à jour :	06/03/2014
- |	Fabrication :	Qt4 / Qt5 OpenSource (Desktop)
- + ------------------------------------------------------------------------- */
-/*
- |	Copyright (c) 2014 by Alain Menu <alain.menu@ac-creteil.fr>
- |
- |  This file is part of "Qam Modbus over TCP/IP project"
- |
- |  This program is free software ;  you can  redistribute it and/or  modify it
- |  under the terms of the  GNU General Public License as published by the Free
- |  Software Foundation ; either version 2 of the License, or  (at your option)
- |  any later version.
- |
- |  This program is distributed in the hope that it will be useful, but WITHOUT
- |  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
- |  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
- |  more details < http://www.gnu.org/licenses/gpl.txt >.
- + ------------------------------------------------------------------------- */
+/*  ---------------------------------------------------------------------------
+ *  filename    :   qammodbusmapviewer.cpp
+ *  description :   IMPLEMENTATION de la classe QamModbusMapViewer
+ *					Visualiseur arborescent d'un objet QamModbusMap
+ *
+ *	project     :	Qam Modbus over TCP/IP
+ *  start date  :   janvier 2014
+ *  ---------------------------------------------------------------------------
+ *  Copyright 2014-2016 by Alain Menu   <alain.menu@ac-creteil.fr>
+ *
+ *  This file is part of "Qam Modbus over IP Project"
+ *
+ *  This program is free software ;  you can  redistribute it and/or  modify it
+ *  under the terms of the  GNU General Public License as published by the Free
+ *  Software Foundation ; either version 3 of the License, or  (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
+ *  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
+ *  more details.
+ *
+ *	You should have  received  a copy of the  GNU General Public License  along
+ *	with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  ---------------------------------------------------------------------------
+ */
 
 #include "qammodbusmapviewer.h"
 
@@ -251,7 +252,7 @@ void QamModbusMapViewer::setModbusMap(QamModbusMap* map )
 	for ( int i = 0 ; i < m_labels.size() ; ++i )	this->resizeColumnToContents( i ) ;
 	// tout replier...
 	this->collapseAll() ;
-	// ... et ne montrer seulement la liste des 'numbers' utilisés
+	// ... et montrer seulement la liste des 'numbers' utilisés
 	for ( int i = 0 ; i < m_model->rowCount() ; ++i )	this->expand(m_model->index(i, 0 ) ) ;
 
 	// interception des changements de valeurs

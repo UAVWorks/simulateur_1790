@@ -1,4 +1,0 @@
-#include "qamflightinstrument.h"
-#include "qamchronograph.h"
-#include "qamtachymeter.h"
-#include "qamturncoordinator.h"

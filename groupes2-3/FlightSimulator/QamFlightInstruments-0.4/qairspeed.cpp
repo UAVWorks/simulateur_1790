@@ -29,7 +29,7 @@
 #include <QDebug>
 
 QAirSpeed::QAirSpeed(QWidget* parent )
-    : QFlightInstrument(parent)
+    : QamFlightInstrument(parent)
     , m_isUnitKmh( true )
 {
     setMinMax(0, 140, AIRSPEED ) ;

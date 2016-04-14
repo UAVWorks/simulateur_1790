@@ -11,25 +11,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LLFFS
 TEMPLATE = app
 
+OBJECTS_DIR = .obj
+UI_DIR = .uic
 
 MBDIALOGPATH = ../Modbus/ModbusDialog
 MBTCPWORKERPATH = ../Modbus/ModbusTCPWorker
-XPLANEUDPPATH = ../XPlaneUDPWorker
+XPLANEUDPPATH = ../LLF-FS-sources
 INSTRUMENTSPATH = ../QamFlightInstruments-0.4
 
 INCLUDEPATH += . $${MBDIALOGPATH} $${MBTCPWORKERPATH} $${XPLANEUDPPATH} $${INSTRUMENTSPATH}
 
 SOURCES += main.cpp\
-        llffs.cpp \
+    llffs.cpp \
+    qfipanel.cpp \
     $${MBDIALOGPATH}/MainDialog.cpp \
     $${MBDIALOGPATH}/qammodbusmapviewer.cpp \
-    $${MBTCPWORKERPATH}/qamabstractserver.cpp \
-    $${MBTCPWORKERPATH}/qammodbusdata.cpp \
-    $${MBTCPWORKERPATH}/qammodbusmap.cpp \
-    $${MBTCPWORKERPATH}/qamtcpclient.cpp \
-    $${MBTCPWORKERPATH}/TCPWorker.cpp \
-    $${XPLANEUDPPATH}/Dataref.cpp \
-    $${XPLANEUDPPATH}/XPlaneUDPWorker.cpp \
     $${INSTRUMENTSPATH}/qamchronograph.cpp \
     $${INSTRUMENTSPATH}/qamflightinstrument.cpp \
     $${INSTRUMENTSPATH}/qamtachymeter.cpp \
@@ -37,26 +33,40 @@ SOURCES += main.cpp\
     $${INSTRUMENTSPATH}/qaltimeter.cpp \
     $${INSTRUMENTSPATH}/qvariometer.cpp \
     $${INSTRUMENTSPATH}/qairspeed.cpp \
-    llffs.cpp
+    $${INSTRUMENTSPATH}/qamgyrodir.cpp  \
+    $${XPLANEUDPPATH}/dataref.cpp \
+    $${XPLANEUDPPATH}/qamudpsocket.cpp \
+    $${XPLANEUDPPATH}/xplaneudpworker.cpp \
+    $${MBTCPWORKERPATH}/qamabstractserver.cpp \
+    $${MBTCPWORKERPATH}/qammodbusdata.cpp \
+    $${MBTCPWORKERPATH}/qammodbusmap.cpp \
+    $${MBTCPWORKERPATH}/qamtcpclient.cpp \
+    $${MBTCPWORKERPATH}/modbustcpworker.cpp \
+    $${MBTCPWORKERPATH}/qamtcpserver.cpp \
+    $${MBTCPWORKERPATH}/qamtcpconnection.cpp
 
 HEADERS  += llffs.h \
+    qfipanel.h \
     $${MBDIALOGPATH}/MainDialog.h \
     $${MBDIALOGPATH}/qammodbusmapviewer.h \
     $${MBTCPWORKERPATH}/qamabstractserver.h \
     $${MBTCPWORKERPATH}/qammodbusdata.h \
     $${MBTCPWORKERPATH}/qammodbusmap.h \
     $${MBTCPWORKERPATH}/qamtcpclient.h \
-    $${MBTCPWORKERPATH}/TCPWorker.h \
-    $${XPLANEUDPPATH}/Dataref.h \
-    $${XPLANEUDPPATH}/XPlaneUDPWorker.h \
+    $${MBTCPWORKERPATH}/modbustcpworker.h \
+    $${MBTCPWORKERPATH}/qamtcpserver.h \
+    $${MBTCPWORKERPATH}/qamtcpconnection.h \
     $${INSTRUMENTSPATH}/qamchronograph.h \
     $${INSTRUMENTSPATH}/qamflightinstrument.h \
     $${INSTRUMENTSPATH}/qamtachymeter.h \
     $${INSTRUMENTSPATH}/qamturncoordinator.h \
     $${INSTRUMENTSPATH}/qaltimeter.h \
     $${INSTRUMENTSPATH}/qvariometer.h \
-    $${INSTRUMENTSPATH}/qairspeed.h
+    $${INSTRUMENTSPATH}/qairspeed.h \
+    $${INSTRUMENTSPATH}/qamgyrodir.h \
+    $${XPLANEUDPPATH}/dataref.h \
+    $${XPLANEUDPPATH}/qamudpsocket.h \
+    $${XPLANEUDPPATH}/xplaneudpworker.h
 
 FORMS    += \
-    $${MBDIALOGPATH}/maindialog.ui \
-    llffs.ui
+    $${MBDIALOGPATH}/maindialog.ui
