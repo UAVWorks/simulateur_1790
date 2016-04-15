@@ -16,7 +16,7 @@ public:
     void addSlave(QamModbusMap* map) ;
 
 signals :
-    void close() ;
+    //void close() ;
 
 private:
     

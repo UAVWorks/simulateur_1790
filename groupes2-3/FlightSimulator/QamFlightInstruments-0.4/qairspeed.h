@@ -26,6 +26,7 @@
 
 // Source: Indicateur Tachymétrique KEHA Präcitechnik AMA ref. 8-436-AB type 901F
 //Test
+
 #ifndef QAIRSPEED_H
 #define QAIRSPEED_H
 

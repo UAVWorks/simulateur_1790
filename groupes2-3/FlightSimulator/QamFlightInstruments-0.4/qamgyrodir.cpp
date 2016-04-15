@@ -86,7 +86,7 @@ void QamGyroDir::drawBackground(QPainter& painter )
 // scale
         QRectF target(-0.65*QFI_RADIUS,-0.65*QFI_RADIUS, 5.1*(QFI_RADIUS), 5.1*QFI_RADIUS) ;
         QRectF source(1.0, 1.0, wi, hi ) ;
-        QImage image("C:/Users/Romain/Downloads/roro.png") ;
+        QImage image("./roro.png") ;
         painter.drawImage(target, image, source ) ;
 
 

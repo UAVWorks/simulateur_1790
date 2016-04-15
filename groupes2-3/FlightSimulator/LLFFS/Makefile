@@ -70,7 +70,8 @@ SOURCES       = main.cpp \
 		../Modbus/ModbusTCPWorker/qamtcpclient.cpp \
 		../Modbus/ModbusTCPWorker/modbustcpworker.cpp \
 		../Modbus/ModbusTCPWorker/qamtcpserver.cpp \
-		../Modbus/ModbusTCPWorker/qamtcpconnection.cpp moc_llffs.cpp \
+		../Modbus/ModbusTCPWorker/qamtcpconnection.cpp \
+		../QamFlightInstruments-0.4/QHA.cpp moc_llffs.cpp \
 		moc_qfipanel.cpp \
 		moc_MainDialog.cpp \
 		moc_qammodbusmapviewer.cpp \
@@ -90,7 +91,8 @@ SOURCES       = main.cpp \
 		moc_qairspeed.cpp \
 		moc_qamgyrodir.cpp \
 		moc_qamudpsocket.cpp \
-		moc_xplaneudpworker.cpp
+		moc_xplaneudpworker.cpp \
+		moc_QHA.cpp
 OBJECTS       = .obj/main.o \
 		.obj/llffs.o \
 		.obj/qfipanel.o \
@@ -114,6 +116,7 @@ OBJECTS       = .obj/main.o \
 		.obj/modbustcpworker.o \
 		.obj/qamtcpserver.o \
 		.obj/qamtcpconnection.o \
+		.obj/QHA.o \
 		.obj/moc_llffs.o \
 		.obj/moc_qfipanel.o \
 		.obj/moc_MainDialog.o \
@@ -134,7 +137,8 @@ OBJECTS       = .obj/main.o \
 		.obj/moc_qairspeed.o \
 		.obj/moc_qamgyrodir.o \
 		.obj/moc_qamudpsocket.o \
-		.obj/moc_xplaneudpworker.o
+		.obj/moc_xplaneudpworker.o \
+		.obj/moc_QHA.o
 DIST          = /home/nicolas/Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/nicolas/Qt/5.5/gcc_64/mkspecs/common/unix.conf \
 		/home/nicolas/Qt/5.5/gcc_64/mkspecs/common/linux.conf \
@@ -290,7 +294,8 @@ DIST          = /home/nicolas/Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../QamFlightInstruments-0.4/qamgyrodir.h \
 		../LLF-FS-sources/dataref.h \
 		../LLF-FS-sources/qamudpsocket.h \
-		../LLF-FS-sources/xplaneudpworker.h main.cpp \
+		../LLF-FS-sources/xplaneudpworker.h \
+		../QamFlightInstruments-0.4/QHA.h main.cpp \
 		llffs.cpp \
 		qfipanel.cpp \
 		../Modbus/ModbusDialog/MainDialog.cpp \
@@ -312,7 +317,8 @@ DIST          = /home/nicolas/Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../Modbus/ModbusTCPWorker/qamtcpclient.cpp \
 		../Modbus/ModbusTCPWorker/modbustcpworker.cpp \
 		../Modbus/ModbusTCPWorker/qamtcpserver.cpp \
-		../Modbus/ModbusTCPWorker/qamtcpconnection.cpp
+		../Modbus/ModbusTCPWorker/qamtcpconnection.cpp \
+		../QamFlightInstruments-0.4/QHA.cpp
 QMAKE_TARGET  = LLFFS
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = LLFFS
@@ -636,8 +642,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents llffs.h qfipanel.h ../Modbus/ModbusDialog/MainDialog.h ../Modbus/ModbusDialog/qammodbusmapviewer.h ../Modbus/ModbusTCPWorker/qamabstractserver.h ../Modbus/ModbusTCPWorker/qammodbusdata.h ../Modbus/ModbusTCPWorker/qammodbusmap.h ../Modbus/ModbusTCPWorker/qamtcpclient.h ../Modbus/ModbusTCPWorker/modbustcpworker.h ../Modbus/ModbusTCPWorker/qamtcpserver.h ../Modbus/ModbusTCPWorker/qamtcpconnection.h ../QamFlightInstruments-0.4/qamchronograph.h ../QamFlightInstruments-0.4/qamflightinstrument.h ../QamFlightInstruments-0.4/qamtachymeter.h ../QamFlightInstruments-0.4/qamturncoordinator.h ../QamFlightInstruments-0.4/qaltimeter.h ../QamFlightInstruments-0.4/qvariometer.h ../QamFlightInstruments-0.4/qairspeed.h ../QamFlightInstruments-0.4/qamgyrodir.h ../LLF-FS-sources/dataref.h ../LLF-FS-sources/qamudpsocket.h ../LLF-FS-sources/xplaneudpworker.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp llffs.cpp qfipanel.cpp ../Modbus/ModbusDialog/MainDialog.cpp ../Modbus/ModbusDialog/qammodbusmapviewer.cpp ../QamFlightInstruments-0.4/qamchronograph.cpp ../QamFlightInstruments-0.4/qamflightinstrument.cpp ../QamFlightInstruments-0.4/qamtachymeter.cpp ../QamFlightInstruments-0.4/qamturncoordinator.cpp ../QamFlightInstruments-0.4/qaltimeter.cpp ../QamFlightInstruments-0.4/qvariometer.cpp ../QamFlightInstruments-0.4/qairspeed.cpp ../QamFlightInstruments-0.4/qamgyrodir.cpp ../LLF-FS-sources/dataref.cpp ../LLF-FS-sources/qamudpsocket.cpp ../LLF-FS-sources/xplaneudpworker.cpp ../Modbus/ModbusTCPWorker/qamabstractserver.cpp ../Modbus/ModbusTCPWorker/qammodbusdata.cpp ../Modbus/ModbusTCPWorker/qammodbusmap.cpp ../Modbus/ModbusTCPWorker/qamtcpclient.cpp ../Modbus/ModbusTCPWorker/modbustcpworker.cpp ../Modbus/ModbusTCPWorker/qamtcpserver.cpp ../Modbus/ModbusTCPWorker/qamtcpconnection.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents llffs.h qfipanel.h ../Modbus/ModbusDialog/MainDialog.h ../Modbus/ModbusDialog/qammodbusmapviewer.h ../Modbus/ModbusTCPWorker/qamabstractserver.h ../Modbus/ModbusTCPWorker/qammodbusdata.h ../Modbus/ModbusTCPWorker/qammodbusmap.h ../Modbus/ModbusTCPWorker/qamtcpclient.h ../Modbus/ModbusTCPWorker/modbustcpworker.h ../Modbus/ModbusTCPWorker/qamtcpserver.h ../Modbus/ModbusTCPWorker/qamtcpconnection.h ../QamFlightInstruments-0.4/qamchronograph.h ../QamFlightInstruments-0.4/qamflightinstrument.h ../QamFlightInstruments-0.4/qamtachymeter.h ../QamFlightInstruments-0.4/qamturncoordinator.h ../QamFlightInstruments-0.4/qaltimeter.h ../QamFlightInstruments-0.4/qvariometer.h ../QamFlightInstruments-0.4/qairspeed.h ../QamFlightInstruments-0.4/qamgyrodir.h ../LLF-FS-sources/dataref.h ../LLF-FS-sources/qamudpsocket.h ../LLF-FS-sources/xplaneudpworker.h ../QamFlightInstruments-0.4/QHA.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp llffs.cpp qfipanel.cpp ../Modbus/ModbusDialog/MainDialog.cpp ../Modbus/ModbusDialog/qammodbusmapviewer.cpp ../QamFlightInstruments-0.4/qamchronograph.cpp ../QamFlightInstruments-0.4/qamflightinstrument.cpp ../QamFlightInstruments-0.4/qamtachymeter.cpp ../QamFlightInstruments-0.4/qamturncoordinator.cpp ../QamFlightInstruments-0.4/qaltimeter.cpp ../QamFlightInstruments-0.4/qvariometer.cpp ../QamFlightInstruments-0.4/qairspeed.cpp ../QamFlightInstruments-0.4/qamgyrodir.cpp ../LLF-FS-sources/dataref.cpp ../LLF-FS-sources/qamudpsocket.cpp ../LLF-FS-sources/xplaneudpworker.cpp ../Modbus/ModbusTCPWorker/qamabstractserver.cpp ../Modbus/ModbusTCPWorker/qammodbusdata.cpp ../Modbus/ModbusTCPWorker/qammodbusmap.cpp ../Modbus/ModbusTCPWorker/qamtcpclient.cpp ../Modbus/ModbusTCPWorker/modbustcpworker.cpp ../Modbus/ModbusTCPWorker/qamtcpserver.cpp ../Modbus/ModbusTCPWorker/qamtcpconnection.cpp ../QamFlightInstruments-0.4/QHA.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Modbus/ModbusDialog/maindialog.ui $(DISTDIR)/
 
 
@@ -661,9 +667,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_llffs.cpp moc_qfipanel.cpp moc_MainDialog.cpp moc_qammodbusmapviewer.cpp moc_qamabstractserver.cpp moc_qammodbusdata.cpp moc_qammodbusmap.cpp moc_qamtcpclient.cpp moc_modbustcpworker.cpp moc_qamtcpserver.cpp moc_qamtcpconnection.cpp moc_qamchronograph.cpp moc_qamflightinstrument.cpp moc_qamtachymeter.cpp moc_qamturncoordinator.cpp moc_qaltimeter.cpp moc_qvariometer.cpp moc_qairspeed.cpp moc_qamgyrodir.cpp moc_qamudpsocket.cpp moc_xplaneudpworker.cpp
+compiler_moc_header_make_all: moc_llffs.cpp moc_qfipanel.cpp moc_MainDialog.cpp moc_qammodbusmapviewer.cpp moc_qamabstractserver.cpp moc_qammodbusdata.cpp moc_qammodbusmap.cpp moc_qamtcpclient.cpp moc_modbustcpworker.cpp moc_qamtcpserver.cpp moc_qamtcpconnection.cpp moc_qamchronograph.cpp moc_qamflightinstrument.cpp moc_qamtachymeter.cpp moc_qamturncoordinator.cpp moc_qaltimeter.cpp moc_qvariometer.cpp moc_qairspeed.cpp moc_qamgyrodir.cpp moc_qamudpsocket.cpp moc_xplaneudpworker.cpp moc_QHA.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_llffs.cpp moc_qfipanel.cpp moc_MainDialog.cpp moc_qammodbusmapviewer.cpp moc_qamabstractserver.cpp moc_qammodbusdata.cpp moc_qammodbusmap.cpp moc_qamtcpclient.cpp moc_modbustcpworker.cpp moc_qamtcpserver.cpp moc_qamtcpconnection.cpp moc_qamchronograph.cpp moc_qamflightinstrument.cpp moc_qamtachymeter.cpp moc_qamturncoordinator.cpp moc_qaltimeter.cpp moc_qvariometer.cpp moc_qairspeed.cpp moc_qamgyrodir.cpp moc_qamudpsocket.cpp moc_xplaneudpworker.cpp
+	-$(DEL_FILE) moc_llffs.cpp moc_qfipanel.cpp moc_MainDialog.cpp moc_qammodbusmapviewer.cpp moc_qamabstractserver.cpp moc_qammodbusdata.cpp moc_qammodbusmap.cpp moc_qamtcpclient.cpp moc_modbustcpworker.cpp moc_qamtcpserver.cpp moc_qamtcpconnection.cpp moc_qamchronograph.cpp moc_qamflightinstrument.cpp moc_qamtachymeter.cpp moc_qamturncoordinator.cpp moc_qaltimeter.cpp moc_qvariometer.cpp moc_qairspeed.cpp moc_qamgyrodir.cpp moc_qamudpsocket.cpp moc_xplaneudpworker.cpp moc_QHA.cpp
 moc_llffs.cpp: /home/nicolas/Qt/5.5/gcc_64/include/QtCore/QObject \
 		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobject.h \
 		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobjectdefs.h \
@@ -2973,6 +2979,133 @@ moc_xplaneudpworker.cpp: /home/nicolas/Qt/5.5/gcc_64/include/QtCore/QObject \
 		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QByteArray \
 		../LLF-FS-sources/xplaneudpworker.h
 	/home/nicolas/Qt/5.5/gcc_64/bin/moc $(DEFINES) -I/home/nicolas/Qt/5.5/gcc_64/mkspecs/linux-g++ -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLFFS -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLFFS -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/Modbus/ModbusDialog -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/Modbus/ModbusTCPWorker -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLF-FS-sources -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/QamFlightInstruments-0.4 -I/home/nicolas/Qt/5.5/gcc_64/include -I/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets -I/home/nicolas/Qt/5.5/gcc_64/include/QtGui -I/home/nicolas/Qt/5.5/gcc_64/include/QtNetwork -I/home/nicolas/Qt/5.5/gcc_64/include/QtCore ../LLF-FS-sources/xplaneudpworker.h -o moc_xplaneudpworker.cpp
+
+moc_QHA.cpp: ../QamFlightInstruments-0.4/qamflightinstrument.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QWidget \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qglobal.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qconfig.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfeatures.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlogging.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qflags.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmutex.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qnumeric.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qnamespace.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobject.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstring.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qchar.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbytearray.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qrefcount.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qarraydata.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qiterator.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringlist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qregexp.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmetatype.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qisenum.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmargins.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qrect.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsize.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qpoint.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpalette.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qcolor.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qrgb.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qbrush.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qpair.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvector.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qmatrix.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpolygon.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qregion.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdatastream.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qiodevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qline.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtransform.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qimage.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpixmap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qshareddata.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qhash.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfont.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qcursor.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qevent.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvariant.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdebug.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtextstream.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlocale.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qset.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qurl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qurlquery.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfile.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qvector2d.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QDoubleSpinBox \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qspinbox.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qicon.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/QPainter \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpainter.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpen.h \
+		../QamFlightInstruments-0.4/_ABOUT \
+		../QamFlightInstruments-0.4/_VERSION \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QTimer \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtimer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbasictimer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QTime \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdatetime.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/QColor \
+		../QamFlightInstruments-0.4/QHA.h
+	/home/nicolas/Qt/5.5/gcc_64/bin/moc $(DEFINES) -I/home/nicolas/Qt/5.5/gcc_64/mkspecs/linux-g++ -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLFFS -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLFFS -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/Modbus/ModbusDialog -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/Modbus/ModbusTCPWorker -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/LLF-FS-sources -I/home/nicolas/Documents/PROJET/GIT/simulateur_1790/groupes2-3/FlightSimulator/QamFlightInstruments-0.4 -I/home/nicolas/Qt/5.5/gcc_64/include -I/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets -I/home/nicolas/Qt/5.5/gcc_64/include/QtGui -I/home/nicolas/Qt/5.5/gcc_64/include/QtNetwork -I/home/nicolas/Qt/5.5/gcc_64/include/QtCore ../QamFlightInstruments-0.4/QHA.h -o moc_QHA.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -5592,6 +5725,135 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QByteArray
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/qamtcpconnection.o ../Modbus/ModbusTCPWorker/qamtcpconnection.cpp
 
+.obj/QHA.o: ../QamFlightInstruments-0.4/QHA.cpp ../QamFlightInstruments-0.4/QHA.h \
+		../QamFlightInstruments-0.4/qamflightinstrument.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QWidget \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qglobal.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qconfig.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfeatures.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlogging.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qflags.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmutex.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qnumeric.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qnamespace.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobject.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstring.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qchar.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbytearray.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qrefcount.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qarraydata.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qiterator.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringlist.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qregexp.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmetatype.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qisenum.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmargins.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qrect.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsize.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qpoint.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpalette.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qcolor.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qrgb.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qbrush.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qpair.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvector.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qmatrix.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpolygon.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qregion.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdatastream.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qiodevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qline.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtransform.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qimage.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpixmap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qshareddata.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qhash.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfont.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qcursor.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qevent.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qvariant.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmap.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdebug.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtextstream.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qlocale.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qset.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qurl.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qurlquery.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfile.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qvector2d.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QDoubleSpinBox \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qspinbox.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qicon.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/QPainter \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpainter.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/qpen.h \
+		../QamFlightInstruments-0.4/_ABOUT \
+		../QamFlightInstruments-0.4/_VERSION \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QTimer \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qtimer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qbasictimer.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QTime \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qdatetime.h \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtGui/QColor \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/QtMath \
+		/home/nicolas/Qt/5.5/gcc_64/include/QtCore/qmath.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/QHA.o ../QamFlightInstruments-0.4/QHA.cpp
+
 .obj/moc_llffs.o: moc_llffs.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_llffs.o moc_llffs.cpp
 
@@ -5654,6 +5916,9 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 .obj/moc_xplaneudpworker.o: moc_xplaneudpworker.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_xplaneudpworker.o moc_xplaneudpworker.cpp
+
+.obj/moc_QHA.o: moc_QHA.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o .obj/moc_QHA.o moc_QHA.cpp
 
 ####### Install
 

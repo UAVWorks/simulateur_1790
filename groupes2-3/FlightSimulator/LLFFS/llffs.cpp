@@ -69,8 +69,12 @@ bool llffs::loadConf(QString &csv){
                         createTurnCoordinator(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
                     if (parse[2] == "QAltimeter")
                         createAltimeter(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
-//                  if (parse[2]== "QHA")
-//                      createQHA(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
+                    if ( parse[2] == "QVariometer")
+                        createVariometer(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt()) ;
+                    if ( parse[2] == "QGyro")
+                        createGyroDir(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt()) ;
+                    if (parse[2]== "QHA")
+                        createQHA(parse[1].toInt(),parse[3].toInt(),parse[4].toInt(),parse[5].toInt(),parse[6].toInt());
                       qDebug() << parse[2] ;
                 }
 
@@ -145,13 +149,29 @@ void llffs::createTachymeter(int id, int x, int y, int widht, int height){
     qamtachymeter->show() ;
 }
 
-/*void llffs::createQHA(int id, int x, int y, int width, int height){
+void llffs::createVariometer(int id, int x, int y, int widht, int height)
+{
+    QamFlightInstrument * v = new QamVariometer() ;
+    setQFI(x , y, widht, height, v, id) ;
+    QListQFI <<  v ;
+    v->show();
+}
+
+void llffs::createGyroDir(int id, int x, int y, int widht, int height)
+{
+    QamFlightInstrument * v = new QamGyroDir() ;
+    setQFI(x, y, widht, height, v, id) ;
+    QListQFI << v ;
+    v->show() ;
+}
+
+void llffs::createQHA(int id, int x, int y, int width, int height){
     QamFlightInstrument *qha = new QHA() ;
-    setQFI( x, y, width, height, qha) ;
+    setQFI( x, y, width, height, qha, id) ;
 
     QListQFI << qha ;
     qha->show();
-}*/
+}
 
 void llffs::exploitRref(int id, float value)
 {

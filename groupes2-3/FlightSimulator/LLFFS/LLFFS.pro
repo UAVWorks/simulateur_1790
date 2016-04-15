@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     $${MBTCPWORKERPATH}/qamtcpclient.cpp \
     $${MBTCPWORKERPATH}/modbustcpworker.cpp \
     $${MBTCPWORKERPATH}/qamtcpserver.cpp \
-    $${MBTCPWORKERPATH}/qamtcpconnection.cpp
+    $${MBTCPWORKERPATH}/qamtcpconnection.cpp \
+    ../QamFlightInstruments-0.4/QHA.cpp
 
 HEADERS  += llffs.h \
     qfipanel.h \
@@ -66,7 +67,8 @@ HEADERS  += llffs.h \
     $${INSTRUMENTSPATH}/qamgyrodir.h \
     $${XPLANEUDPPATH}/dataref.h \
     $${XPLANEUDPPATH}/qamudpsocket.h \
-    $${XPLANEUDPPATH}/xplaneudpworker.h
+    $${XPLANEUDPPATH}/xplaneudpworker.h \
+    ../QamFlightInstruments-0.4/QHA.h
 
 FORMS    += \
     $${MBDIALOGPATH}/maindialog.ui
