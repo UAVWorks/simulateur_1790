@@ -49,8 +49,6 @@ QAirSpeed::QAirSpeed(QWidget* parent )
     m_step[AIRSPEED]   = m_span[AIRSPEED] / ( m_max[AIRSPEED] - m_min[AIRSPEED] ) ;
     m_step2[AIRSPEED]   = m_span2[AIRSPEED] / ( m_max[AIRSPEED] - m_min[AIRSPEED] ) ;
 
-
-
     //	animation des aiguilles (pour tests)
 
     setAdjustable(1, 0, 250 ) ;
@@ -323,40 +321,6 @@ void QAirSpeed::drawBackground(QPainter& painter )
 
 void QAirSpeed::drawForeground(QPainter& painter )
     {
-#if 0
-        float e ;	// épaisseur aiguille
-        float lp ;	// longueur de la pointe
-        float l1 ;	// longueur avant (coté pointe)
-        float l2 ;	// longueur arrière
-        float r1 ;	// rayon central
-        float r2 ;	// rayon du contrepoids
-
-        QPolygonF needle ;
-
-
-        // aiguille "AIRSPEED"
-
-        e = 30 ;
-        lp = 2 * e ;
-        l1 = m_radius[AIRSPEED] - 90 ;
-        l2 = m_radius[AIRSPEED] - 350 ;
-        r1 = 40 ;
-        r2 = 80 ;
-
-        needle.clear() ;
-        needle << QPointF(-l2,-100) << QPointF(-50,-e/2) << QPointF(l1-lp,-e/2) << QPointF(l1,0) << QPointF(l1-lp,e/2) << QPointF(-50,e/2) << QPointF(-l2,100) ;
-
-        QPainterPath	path ;
-
-        path.setFillRule(Qt::WindingFill) ;
-        path.addEllipse(-r1, -r1, 2*r1, 2*r1 ) ;
-        path.addPolygon( needle ) ;
-
-        painter.save() ;
-        painter.setPen(Qt::NoPen) ;
-        painter.setBrush( QColor(220, 220, 220, 120 ) ) ;
-
-#endif
 
         float len ;						// longueur de l'aiguille orientée 0X+
         QVector<QPointF> pts ;			// points de construction dans demi-plan 0Y+
@@ -366,12 +330,12 @@ void QAirSpeed::drawForeground(QPainter& painter )
 
         len = 0.95 * m_radius[AIRSPEED] ;
         pts.clear() ;
-        pts << QPointF( -120, 60 ) << QPointF( -40, 15 )<< QPointF( len - 60, 15 ) << QPointF( len, 0 ) ;
+        pts << QPointF( -164, 55 ) << QPointF( -162, 65 ) << QPointF( -160, 75 ) << QPointF( -155, 80 ) << QPointF( -150, 85 ) << QPointF( -145, 90 ) << QPointF( -135, 90 ) << QPointF( -20, 15 )<< QPointF( len - 60, 15 ) << QPointF( len, 0 ) ;
 
         painter.save() ;
 
 
-    float f=value(AIRSPEED);
+        float f=value(AIRSPEED);
 
         if (m_isUnitKmh==true){
             if ( f <= 26.9978 ) {
@@ -407,7 +371,7 @@ void QAirSpeed::drawForeground(QPainter& painter )
         cg.setColorAt(1.0, Qt::white ) ;
 
         painter.save() ;
-        painter.rotate(-135+(f*1.852) *15 /10.0) ;
+        painter.rotate(-135) ;
         painter.setPen(Qt::black ) ;
         painter.setBrush(QBrush( cg ) ) ;
         painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;

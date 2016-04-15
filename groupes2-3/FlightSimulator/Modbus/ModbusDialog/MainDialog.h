@@ -15,6 +15,9 @@ public:
     explicit MainDialog(QWidget* parent = 0) ;
     void addSlave(QamModbusMap* map) ;
 
+signals :
+    void close() ;
+
 private:
     
     QList<QamModbusMapViewer *> m_modbusMapViewer ;
