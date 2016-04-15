@@ -77,19 +77,19 @@
   43               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 Events.c
-     /tmp/ccA0AWRg.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccA0AWRg.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccA0AWRg.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccA0AWRg.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccA0AWRg.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 USB_Event_Stub
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Connect
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Disconnect
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_UnhandledControlRequest
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_ConfigurationChanged
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Suspend
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_WakeUp
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Reset
-     /tmp/ccA0AWRg.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_StartOfFrame
+     /tmp/ccG3niCC.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccG3niCC.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccG3niCC.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccG3niCC.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccG3niCC.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 USB_Event_Stub
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Connect
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Disconnect
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_UnhandledControlRequest
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_ConfigurationChanged
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Suspend
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_WakeUp
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_Reset
+     /tmp/ccG3niCC.s:13     .text.USB_Event_Stub:0000000000000000 EVENT_USB_Device_StartOfFrame
 
 NO UNDEFINED SYMBOLS

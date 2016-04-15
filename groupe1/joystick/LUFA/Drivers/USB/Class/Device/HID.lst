@@ -2441,14 +2441,14 @@
  844               		.file 11 "../../LUFA/Drivers/USB/Class/Device/../../HighLevel/USBTask.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 HID.c
-     /tmp/ccUqcjis.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccUqcjis.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccUqcjis.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccUqcjis.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccUqcjis.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccUqcjis.s:13     .text.HID_Device_ProcessControlRequest:0000000000000000 HID_Device_ProcessControlRequest
-     /tmp/ccUqcjis.s:444    .text.HID_Device_ConfigureEndpoints:0000000000000000 HID_Device_ConfigureEndpoints
-     /tmp/ccUqcjis.s:527    .text.HID_Device_USBTask:0000000000000000 HID_Device_USBTask
+     /tmp/cc7w0X7S.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc7w0X7S.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc7w0X7S.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc7w0X7S.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc7w0X7S.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc7w0X7S.s:13     .text.HID_Device_ProcessControlRequest:0000000000000000 HID_Device_ProcessControlRequest
+     /tmp/cc7w0X7S.s:444    .text.HID_Device_ConfigureEndpoints:0000000000000000 HID_Device_ConfigureEndpoints
+     /tmp/cc7w0X7S.s:527    .text.HID_Device_USBTask:0000000000000000 HID_Device_USBTask
 
 UNDEFINED SYMBOLS
 USB_ControlRequest

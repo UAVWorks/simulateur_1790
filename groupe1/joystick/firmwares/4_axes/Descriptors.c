@@ -1,40 +1,3 @@
-/*
-             LUFA Library
-     Copyright (C) Dean Camera, 2010.
-              
-  dean [at] fourwalledcubicle [dot] com
-      www.fourwalledcubicle.com
-*/
-
-/*
-  Copyright 2010  Dean Camera (dean [at] fourwalledcubicle [dot] com)
-
-  Permission to use, copy, modify, distribute, and sell this 
-  software and its documentation for any purpose is hereby granted
-  without fee, provided that the above copyright notice appear in 
-  all copies and that both that the copyright notice and this
-  permission notice and warranty disclaimer appear in supporting 
-  documentation, and that the name of the author not be used in 
-  advertising or publicity pertaining to distribution of the 
-  software without specific, written prior permission.
-
-  The author disclaim all warranties with regard to this
-  software, including all implied warranties of merchantability
-  and fitness.  In no event shall the author be liable for any
-  special, indirect or consequential damages or any damages
-  whatsoever resulting from loss of use, data or profits, whether
-  in an action of contract, negligence or other tortious action,
-  arising out of or in connection with the use or performance of
-  this software.
-*/
-
-/** \file
- *
- *  USB Device Descriptors, for library use when in USB device mode. Descriptors are special 
- *  computer-readable structures which the host requests upon device enumeration, to determine
- *  the device's capabilities and functions.  
- */
-
 #include "Descriptors.h"
 
 /** HID class report descriptor. This is a special descriptor constructed with values from the
@@ -48,22 +11,20 @@ const USB_Descriptor_HIDReport_Datatype_t PROGMEM JoystickReport[] =
 	0x05, 0x01,          /* Usage Page (Generic Desktop)                       */
 	0x09, 0x04,          /* Usage (Joystick)                                   */
 
-	0xa1, 0x01,          /* Collection (Application)                           */
-	0x09, 0x01,          /*   Usage (Pointer)                                  */
-
 	/* 8 axes, signed 16 bit resolution, range -32768 to 32767 (16 bytes) */
 	0xa1, 0x00,          /*   Collection (Physical)                            */
 	0x05, 0x01,          /*     Usage Page (Generic Desktop)                   */
-	0x09, 0x30,          /*     Usage (X)                                      */
-	0x09, 0x31,          /*     Usage (Y)                                      */
+	0x09, 0x30,          /*     Usage (Analog0)                                */
+	0x09, 0x31,          /*     Usage (Analog1)                                */
 	0x09, 0x32,          /*     Usage (Analog1)                                */
-	0x09, 0x33,          /*     Usage (Analog2)                                */
+	0x09, 0x33,          /*     Usage (Analog1)                                */
 	0x16, 0x00, 0x80,    /*     Logical Minimum (-32768)                       */
 	0x26, 0xff, 0x7f,    /*     Logical Maximum (32767)                        */
 	0x75, 16,            /*     Report Size (16)                               */
 	0x95, 4,             /*     Report Count (4)                               */
 	0x81, 0x82,          /*     Input (Data, Variable, Absolute, Volatile)     */
 	0xc0                /*   End Collection                                   */
+
 };
 
 /** Device descriptor structure. This descriptor, located in FLASH memory, describes the overall
@@ -183,7 +144,7 @@ const USB_Descriptor_String_t PROGMEM ProductString =
 {
 	.Header                 = {.Size = USB_STRING_LEN(16), .Type = DTYPE_String},
 		
-	.UnicodeString          = L"Arduino Joystick"
+	.UnicodeString          = L"Joystick-simulateur"
 };
 
 /** This function is called by the library when in device mode, and must be overridden (see library "USB Descriptors"

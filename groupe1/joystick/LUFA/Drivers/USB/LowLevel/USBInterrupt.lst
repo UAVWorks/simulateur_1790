@@ -2289,14 +2289,14 @@
  305               		.file 7 "../../LUFA/Drivers/USB/LowLevel/../HighLevel/DeviceStandardReq.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 USBInterrupt.c
-     /tmp/cchG932d.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/cchG932d.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/cchG932d.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/cchG932d.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/cchG932d.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/cchG932d.s:13     .text.USB_INT_DisableAllInterrupts:0000000000000000 USB_INT_DisableAllInterrupts
-     /tmp/cchG932d.s:31     .text.USB_INT_ClearAllInterrupts:0000000000000000 USB_INT_ClearAllInterrupts
-     /tmp/cchG932d.s:48     .text.__vector_11:0000000000000000 __vector_11
+     /tmp/ccNBkgks.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccNBkgks.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccNBkgks.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccNBkgks.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccNBkgks.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccNBkgks.s:13     .text.USB_INT_DisableAllInterrupts:0000000000000000 USB_INT_DisableAllInterrupts
+     /tmp/ccNBkgks.s:31     .text.USB_INT_ClearAllInterrupts:0000000000000000 USB_INT_ClearAllInterrupts
+     /tmp/ccNBkgks.s:48     .text.__vector_11:0000000000000000 __vector_11
 
 UNDEFINED SYMBOLS
 EVENT_USB_Device_Disconnect

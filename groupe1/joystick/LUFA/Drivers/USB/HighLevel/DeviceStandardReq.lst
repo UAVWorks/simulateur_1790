@@ -1777,12 +1777,12 @@
  511               		.file 7 "../../LUFA/Drivers/USB/HighLevel/Events.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 DeviceStandardReq.c
-     /tmp/ccDlD8Vm.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccDlD8Vm.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccDlD8Vm.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccDlD8Vm.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccDlD8Vm.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccDlD8Vm.s:13     .text.USB_Device_ProcessControlRequest:0000000000000000 USB_Device_ProcessControlRequest
+     /tmp/ccM6RCBB.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccM6RCBB.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccM6RCBB.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccM6RCBB.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccM6RCBB.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccM6RCBB.s:13     .text.USB_Device_ProcessControlRequest:0000000000000000 USB_Device_ProcessControlRequest
                             *COM*:0000000000000001 USB_CurrentlySelfPowered
                             *COM*:0000000000000001 USB_ConfigurationNumber
 

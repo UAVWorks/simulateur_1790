@@ -29,9 +29,9 @@
 #ifndef QAIRSPEED_H
 #define QAIRSPEED_H
 
-#include "qflightinstrument.h"
+#include "qamflightinstrument.h"
 
-class QAirSpeed : public QFlightInstrument
+class QAirSpeed : public QamFlightInstrument
 {
     Q_OBJECT
 

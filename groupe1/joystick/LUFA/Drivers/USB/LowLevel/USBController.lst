@@ -875,14 +875,14 @@
  199               		.file 7 "../../LUFA/Drivers/USB/LowLevel/../HighLevel/../LowLevel/Device.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 USBController.c
-     /tmp/ccu8e1Ob.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccu8e1Ob.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccu8e1Ob.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccu8e1Ob.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccu8e1Ob.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccu8e1Ob.s:13     .text.USB_ResetInterface:0000000000000000 USB_ResetInterface
-     /tmp/ccu8e1Ob.s:113    .text.USB_Init:0000000000000000 USB_Init
-     /tmp/ccu8e1Ob.s:134    .text.USB_ShutDown:0000000000000000 USB_ShutDown
+     /tmp/ccGSv96p.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccGSv96p.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccGSv96p.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccGSv96p.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccGSv96p.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccGSv96p.s:13     .text.USB_ResetInterface:0000000000000000 USB_ResetInterface
+     /tmp/ccGSv96p.s:113    .text.USB_Init:0000000000000000 USB_Init
+     /tmp/ccGSv96p.s:134    .text.USB_ShutDown:0000000000000000 USB_ShutDown
 
 UNDEFINED SYMBOLS
 USB_INT_DisableAllInterrupts

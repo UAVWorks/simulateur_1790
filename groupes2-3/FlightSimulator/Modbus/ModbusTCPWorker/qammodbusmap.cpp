@@ -1,34 +1,31 @@
-/* ----------------------------------------------------------------------------
- |	Nom :			qammodbusmap.cpp
- |	Projet :		Qam Modbus over TCP/IP
- |	Sujet :     	Modélisation des tables primaires Modbus
- |  Auteur :		Alain Menu
- |	Version :		1.4
- |	Création :		janvier 2014
- |	Mise à jour :	06/03/2014
- |	Fabrication :	Qt4 / Qt5 OpenSource (Desktop)
- + ------------------------------------------------------------------------- */
-/*
- |	Copyright (c) 2014 by Alain Menu <alain.menu@ac-creteil.fr>
- |
- |  This file is part of "Qam Modbus over TCP/IP project"
- |
- |  This program is free software ;  you can  redistribute it and/or  modify it
- |  under the terms of the  GNU General Public License as published by the Free
- |  Software Foundation ; either version 2 of the License, or  (at your option)
- |  any later version.
- |
- |  This program is distributed in the hope that it will be useful, but WITHOUT
- |  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
- |  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
- |  more details < http://www.gnu.org/licenses/gpl.txt >.
- + ------------------------------------------------------------------------- */
+/*  ---------------------------------------------------------------------------
+ *  filename    :   qammodbusmap.cpp
+ *  description :   IMPLEMENTATION de la classe QamModbusMap
+ *					Modélisation des tables primaires Modbus
+ *
+ *	project     :	Qam Modbus over TCP/IP
+ *  start date  :   janvier 2014
+ *  ---------------------------------------------------------------------------
+ *  Copyright 2014-2016 by Alain Menu   <alain.menu@ac-creteil.fr>
+ *
+ *  This file is part of "Qam Modbus over IP Project"
+ *
+ *  This program is free software ;  you can  redistribute it and/or  modify it
+ *  under the terms of the  GNU General Public License as published by the Free
+ *  Software Foundation ; either version 3 of the License, or  (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY ; without even the  implied  warranty  of  MERCHANTABILITY  or
+ *  FITNESS FOR  A PARTICULAR PURPOSE. See the  GNU General Public License  for
+ *  more details.
+ *
+ *	You should have  received  a copy of the  GNU General Public License  along
+ *	with this program. If not, see <http://www.gnu.org/licenses/>.
+ *  ---------------------------------------------------------------------------
+ */
 
 #include "qammodbusmap.h"
-
-//
-//#include <iostream>
-//
 
 /*! Constructeur. L'argument @a mode permet de spécifier le mode de fonctionnement
  de l'objet.
@@ -63,7 +60,8 @@ QamModbusMap::QamModbusMap(Mode mode, QObject* parent )
 
 QString QamModbusMap::version()
 {
-	return QString("QamModbusMap version %1.%2").arg(MODBUSMAP_VERSION_MAJOR).arg(MODBUSMAP_VERSION_MINOR) ;
+//	return QString("QamModbusMap version %1.%2").arg(MODBUSMAP_VERSION_MAJOR).arg(MODBUSMAP_VERSION_MINOR) ;
+//	return QString("QamModbusMap version %1").arg(QAMMODBUSMAP_VERSION) ;
 }
 
 /*!
@@ -97,7 +95,8 @@ QString QamModbusMap::tableAsString(PrimaryTable table )
  * \return Trame MBAP + PDU de réponse, ou trame vide en cas de MBAP entrant invalide.
  */
 
-QByteArray QamModbusMap::responseToRequest(QByteArray& request )
+//QByteArray QamModbusMap::responseToRequest(QByteArray& request )
+QByteArray QamModbusMap::responseToClientRequest(QByteArray& request )
 {
 	QByteArray		resp = request ;
 	PrimaryTable	table = Coil ;
@@ -337,7 +336,8 @@ QByteArray QamModbusMap::exceptionResponse(QByteArray& request, quint8 exception
  * \param response : trame MBAP + PDU reçue.
  */
 
-void QamModbusMap::response(QByteArray response )
+//void QamModbusMap::response(QByteArray response )
+void QamModbusMap::responseFromServer(QByteArray response )
 {
 	if ( m_verbose ) {
 		QString s ;

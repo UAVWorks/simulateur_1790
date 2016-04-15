@@ -15,8 +15,8 @@ public:
     explicit MainDialog(QWidget* parent = 0) ;
     void addSlave(QamModbusMap* map) ;
 
-protected:
-    void closeEvent(QCloseEvent* event) ;
+signals :
+    void close() ;
 
 private:
     

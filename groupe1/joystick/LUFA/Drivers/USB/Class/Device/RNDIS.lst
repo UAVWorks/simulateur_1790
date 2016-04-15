@@ -3492,15 +3492,15 @@
  1569               		.file 11 "../../LUFA/Drivers/USB/Class/Device/../../HighLevel/USBTask.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 RNDIS.c
-     /tmp/ccmN8MrI.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccmN8MrI.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccmN8MrI.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccmN8MrI.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccmN8MrI.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccmN8MrI.s:13     .text.RNDIS_Device_ProcessControlRequest:0000000000000000 RNDIS_Device_ProcessControlRequest
-     /tmp/ccmN8MrI.s:1450   .progmem.data:0000000000000000 AdapterSupportedOIDList
-     /tmp/ccmN8MrI.s:892    .text.RNDIS_Device_ConfigureEndpoints:0000000000000000 RNDIS_Device_ConfigureEndpoints
-     /tmp/ccmN8MrI.s:1070   .text.RNDIS_Device_USBTask:0000000000000000 RNDIS_Device_USBTask
+     /tmp/ccApTy58.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccApTy58.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccApTy58.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccApTy58.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccApTy58.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccApTy58.s:13     .text.RNDIS_Device_ProcessControlRequest:0000000000000000 RNDIS_Device_ProcessControlRequest
+     /tmp/ccApTy58.s:1450   .progmem.data:0000000000000000 AdapterSupportedOIDList
+     /tmp/ccApTy58.s:892    .text.RNDIS_Device_ConfigureEndpoints:0000000000000000 RNDIS_Device_ConfigureEndpoints
+     /tmp/ccApTy58.s:1070   .text.RNDIS_Device_USBTask:0000000000000000 RNDIS_Device_USBTask
 
 UNDEFINED SYMBOLS
 USB_ControlRequest

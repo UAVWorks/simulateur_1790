@@ -791,14 +791,14 @@
  377               		.file 4 "../../LUFA/Drivers/USB/HighLevel/../LowLevel/../HighLevel/StdDescriptors.h"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ConfigDescriptor.c
-     /tmp/cchNV2zh.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/cchNV2zh.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/cchNV2zh.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/cchNV2zh.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/cchNV2zh.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/cchNV2zh.s:13     .text.USB_GetNextDescriptorOfType:0000000000000000 USB_GetNextDescriptorOfType
-     /tmp/cchNV2zh.s:86     .text.USB_GetNextDescriptorOfTypeBefore:0000000000000000 USB_GetNextDescriptorOfTypeBefore
-     /tmp/cchNV2zh.s:163    .text.USB_GetNextDescriptorOfTypeAfter:0000000000000000 USB_GetNextDescriptorOfTypeAfter
-     /tmp/cchNV2zh.s:240    .text.USB_GetNextDescriptorComp:0000000000000000 USB_GetNextDescriptorComp
+     /tmp/ccysWFkv.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccysWFkv.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccysWFkv.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccysWFkv.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccysWFkv.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccysWFkv.s:13     .text.USB_GetNextDescriptorOfType:0000000000000000 USB_GetNextDescriptorOfType
+     /tmp/ccysWFkv.s:86     .text.USB_GetNextDescriptorOfTypeBefore:0000000000000000 USB_GetNextDescriptorOfTypeBefore
+     /tmp/ccysWFkv.s:163    .text.USB_GetNextDescriptorOfTypeAfter:0000000000000000 USB_GetNextDescriptorOfTypeAfter
+     /tmp/ccysWFkv.s:240    .text.USB_GetNextDescriptorComp:0000000000000000 USB_GetNextDescriptorComp
 
 NO UNDEFINED SYMBOLS
