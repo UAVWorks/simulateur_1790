@@ -33,17 +33,16 @@ public:
     void createChronograph(int id, int x, int y, int widht, int height) ;
     void createTurnCoordinator(int id, int x, int y, int widht, int height) ;
     void createTachymeter(int id, int x, int y, int widht, int height) ;
-  //void createQHA(int id, int x, int y, int width, int height) ;
-    void setQFI(int x, int y, int width, int height, QamFlightInstrument* QFI) ;
+//  void createQHA(int id, int x, int y, int width, int height) ;
+    void setQFI(int x, int y, int width, int height, QamFlightInstrument* QFI,int id) ;
     bool loadConf(QString& file) ;
 
 public slots:
 
-  //void sockReceive(const QByteArray& frame ) ;
-  //void sockInfo(const QString& msg ) ;
+     void exploitRref(int id, float value) ;
 
 private :
-    //void udpClientInit(QHostAddress address = QHostAddress::Null ) ;
+//  void udpClientInit(QHostAddress address = QHostAddress::Null ) ;
 
     XPlaneUdpWorker * m_udpWorker ;
     QString configFile ;

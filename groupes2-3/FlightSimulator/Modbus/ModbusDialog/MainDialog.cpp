@@ -5,7 +5,9 @@
 MainDialog::MainDialog(QWidget *parent) : QDialog(parent)
 {
     setupUi(this);
+    //connect(pbuQuit,)
     this->show();
+
 
 }
 
