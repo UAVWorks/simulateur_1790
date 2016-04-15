@@ -33,7 +33,7 @@ QamGyroDir::QamGyroDir(QWidget* parent ) : QamFlightInstrument(parent)
 	
     //setLabel(QString("GYRDIR"), GYRDIR ) ;
     //setUnit(QString("x 1000"), GYRDIR ) ;
-    setMinMax(-360 , 360, GYRDIR ) ;
+    setMinMax(0 , 0, GYRDIR ) ;
     //setThresholds(32000, 35000, GYRDIR ) ;
     setValue(0, GYRDIR ) ;
 

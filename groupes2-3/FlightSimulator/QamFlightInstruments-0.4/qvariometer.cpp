@@ -33,7 +33,7 @@ QamVariometer::QamVariometer(QWidget* parent ) : QamFlightInstrument(parent)
 {
     setLabel(QString(" Vertical Speed "), VARIOMETER) ;
     setUnit(QString("ft/min x100"), VARIOMETER) ;
-    setMinMax(-20, 20, VARIOMETER) ;
+    setMinMax(-2000, 2000, VARIOMETER) ;
     setValue(0, VARIOMETER) ;
 
     m_radius[VARIOMETER] = QFI_RADIUS ;
@@ -120,7 +120,7 @@ void QamVariometer::drawBackground(QPainter& painter )
     int startAngle = 30 * 16;
     int spanAngle = 120 * 16;
 
-    painter.drawArc(rectangle, startAngle, spanAngle);
+
 
     if (m_isUnitMS) {
 
@@ -131,6 +131,26 @@ void QamVariometer::drawBackground(QPainter& painter )
 
         painter.setBrush( QBrush( black2 ) ) ;
         qfiBackground(painter, m_radius[VARIOMETER]);
+        painter.save();
+
+        // dessin arc de cercle
+        QPen pen(white);
+        pen.setWidth(5);
+
+        painter.setPen(pen);
+        painter.setBrush(Qt::white);
+        painter.drawArc(-0.836*QFI_RADIUS, -0.836*QFI_RADIUS, 1.7*QFI_RADIUS,1.7*QFI_RADIUS,16*165,16*30);
+        painter.restore();
+
+        /* static const QPointF points[3] = {
+            QPointF(10.0, 80.0),
+            QPointF(20.0, 10.0),
+            QPointF(80.0, 30.0),
+        };
+
+        QPainter painter(this);
+        painter.drawPolygon(points, 3); */
+
 
         // graduations
 
@@ -185,30 +205,39 @@ else {
 
     painter.rotate( m_start[CHANGEUNIT] ) ;
 
-    for ( int i = 0 ; i <= ( m_max[CHANGEUNIT] - m_min[CHANGEUNIT] ) ; ++i ) {
+    for ( int i = 0 ; i <= ( 30 ) ; ++i ) {
 
-        if ( i % 5 == 0 ) {		w = 10 ; h = 60 ; }
+        if ( i % 3 == 0 ) {		w = 10 ; h = 60 ; }
         else {						w =  4 ; h = 40 ; }
 
         gRect = QRect(m_radius[CHANGEUNIT] - h - 10, -w / 2, h, w) ;
         gRadius = w / 3 ;
         painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
-        painter.rotate( m_step[CHANGEUNIT] ) ;
+        painter.rotate( 11.3 ) ;
     }
     painter.restore() ;
 
+    // dessin arc de cercle
+    QPen pen(white);
+    pen.setWidth(5);
+
+    painter.setPen(pen);
+    painter.setBrush(Qt::white);
+    painter.drawArc(-0.836*QFI_RADIUS, -0.836*QFI_RADIUS, 1.7*QFI_RADIUS,1.7*QFI_RADIUS,16*165,16*30);
+    painter.restore();
+
     // sérigraphie
 
-    for ( int i = 10 ; i >= ( 0 ) ; i += -5 ) {
+    for ( int i = 10 ; i >= ( 0 ) ; i += -2 ) {
         float alpha = -qDegreesToRadians( 180 + i * m_step[CHANGEUNIT] ) ;
         float r = m_radius[CHANGEUNIT] - 130 ;
-        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i/2) ) ;
+        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
     }
 
-    for ( int i = 0 ; i <= ( 20 ) ; i += 5 ) {
+    for ( int i = 0 ; i <= ( 10 ) ; i += 2 ) {
         float alpha = qDegreesToRadians( 180 + i * m_step[CHANGEUNIT] ) ;
         float r = m_radius[CHANGEUNIT] - 130 ;
-        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i/2) ) ;
+        showText(painter, fo1, white, QPoint( r * qCos(alpha), r * qSin(alpha) ), QString("%1").arg(i) ) ;
     }
     showText(painter, fo2, white, QPoint( 0, -0.3 * m_radius[CHANGEUNIT] ), label(CHANGEUNIT) ) ;
     showText(painter, fo3, white, QPoint( 0, 0.4 * m_radius[CHANGEUNIT] ), unit(CHANGEUNIT) ) ;
@@ -249,7 +278,9 @@ void QamVariometer::drawForeground(QPainter& painter )
     painter.save() ;
     painter.setPen(Qt::NoPen) ;
     painter.setBrush( Qt::white) ;
-    painter.rotate(180 + value(VARIOMETER) * 42.5/5) ;
+    painter.rotate(180 + value(VARIOMETER) * 0.085) ;
+
+
 
     painter.drawPath( path ) ;
 
