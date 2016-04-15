@@ -140,13 +140,14 @@ QThread::msleep(1000) ;
 void XPlaneUdpWorker::received(const QByteArray& data )
 {
 	QString cmd = data.left(4) ;
-qDebug() << "XPlaneUdpWorker::received()" ;
+//qDebug() << "XPlaneUdpWorker::received()" ;
 	if ( cmd == "RREF" ) {
 		XPlaneRrefAnswer* p = (XPlaneRrefAnswer*)( data.data() + 5 ) ;
 		
 		if ( p->id == m_rrefWaitingId )	m_rrefWaitingId = 0 ;
 
 		emit rrefReceived(p->id, p->value ) ;
+
         qDebug() << "recv" << p->id << p->value ;
 	}
 }

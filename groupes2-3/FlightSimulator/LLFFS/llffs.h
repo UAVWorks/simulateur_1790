@@ -43,9 +43,9 @@ public slots:
   //void sockInfo(const QString& msg ) ;
 
 private :
-    void udpClientInit(QHostAddress address = QHostAddress::Null ) ;
+    //void udpClientInit(QHostAddress address = QHostAddress::Null ) ;
 
-    QamUdpSocket*	m_udpSocket ;
+    XPlaneUdpWorker * m_udpWorker ;
     QString configFile ;
     QList<QamFlightInstrument *> QListQFI ;
     QList<DataRef *> QListDat ;

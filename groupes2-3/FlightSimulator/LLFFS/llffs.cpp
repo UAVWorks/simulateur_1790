@@ -10,6 +10,9 @@ llffs::llffs(QObject *parent) :
     mainDialog = new MainDialog() ;
 
     loadConf(configFile);
+
+    m_udpWorker = new XPlaneUdpWorker("192.168.0.1", 49000, 49001, QListDat ) ;
+    m_udpWorker->start();
     //this->show() ;
 }
 
@@ -73,7 +76,6 @@ bool llffs::loadConf(QString &csv){
 
                 DataRef *dataref = new DataRef(parse[3],parse[4].toInt()) ;
 
-
                 if (parse.size() == 5)
                     dataref->bindToInstrument(parse[1].toInt(),parse[2].toInt());
 
@@ -96,7 +98,7 @@ bool llffs::loadConf(QString &csv){
             line = in.readLine() ;
             nline++ ;
         }
-        XPlaneUdpWorker * connection = new XPlaneUdpWorker("192.168.0.1", 49000, 49000, QListDat ) ;
+
         file.close();
         return true ;
     }
