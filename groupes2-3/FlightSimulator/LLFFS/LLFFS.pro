@@ -72,3 +72,6 @@ HEADERS  += llffs.h \
 
 FORMS    += \
     $${MBDIALOGPATH}/maindialog.ui
+
+DISTFILES += \
+    ../QamFlightInstruments-0.4/roro.png
