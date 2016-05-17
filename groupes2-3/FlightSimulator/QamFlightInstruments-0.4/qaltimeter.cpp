@@ -13,7 +13,7 @@ QAltimeter::QAltimeter(QWidget* parent ) : QamFlightInstrument(parent) , m_isUni
     setLabel(QString("ALTIMETER"), ALTIMETER ) ;
     setUnit(QString("x 1000"), ALTIMETER ) ;
 
-    setMinMax(0, 9999, ALTIMETER ) ;
+    setMinMax(-2000, 9999, ALTIMETER ) ;
     setValue(0, ALTIMETER ) ;
 
     m_radius[ALTIMETER] = QFI_RADIUS ;
@@ -29,8 +29,8 @@ QAltimeter::QAltimeter(QWidget* parent ) : QamFlightInstrument(parent) , m_isUni
     setLabel(QString("QNH"), QNH ) ;
     setUnit(QString("IN.Hg"), QNH ) ;
 
-    setMinMax(28, 31, QNH ) ;
-    setValue(28, QNH ) ;
+    setMinMax(0, 1000, QNH ) ;
+    setValue(0, QNH ) ;
 
     m_radius[QNH] = 0.59 * QFI_RADIUS ;
     m_start[QNH]  = 0 ;
@@ -40,16 +40,17 @@ QAltimeter::QAltimeter(QWidget* parent ) : QamFlightInstrument(parent) , m_isUni
     m_step[QNH]   = m_span[QNH] / ( m_max[QNH] - m_min[QNH] ) ;
 
 
-    fo1 = QFont("Arial",60 ) ;
+    fo1 = QFont("Arial",60);
     fo2 = QFont("Arial",50);
     fo3 = QFont("Arial",20);
     fo4 = QFont("Arial",30);
+    fo5 = QFont("Arial",25);
 
     //	animation des aiguilles (pour tests)
 
     setAdjustable(20, 0, ALTIMETER ) ;
-    adjustementChanged(QNH,0);
-
+    //setAdjustable(100, 0, QNH ) ;
+    adjustementChanged(QNH,0); // QNH mb= 648 ; QNH IN.Hg
 }
 
 void QAltimeter::showText(QPainter& painter, QFont& font, QColor& color, const QPoint& center, const QString& s )
@@ -162,7 +163,7 @@ void QAltimeter::drawForeground(QPainter& painter )
 
 
 
-if(m_isUnitmB){
+    if(!m_isUnitmB){
 
     // graduations "QNH"
 
@@ -181,7 +182,8 @@ if(m_isUnitmB){
     pen.setWidth(1) ;
     painter.setPen( pen ) ;
 
-    painter.rotate( m_start[QNH] *- (value(QNH)*(0.350)) ) ;
+    painter.rotate( m_start[QNH]);
+    painter.rotate(-(value(QNH)*348.38/1000));
     int j = 280 ;
     for ( int i = 0 ; i <= ( m_max[QNH] - m_min[QNH] -1 ) ; ++i ) {
 
@@ -190,8 +192,8 @@ if(m_isUnitmB){
 
         gRect = QRect(m_radius[QNH] - h, -w / 2, h, w) ;
         if  ( i % 5 == 0 ){
-            float r = m_radius[QNH] -60 ;
-            showText(painter, fo3, white, QPoint( r ,0 ), QString("%1").arg(j*0.1) ) ;
+            float r = m_radius[QNH] - 67 ;
+            showText(painter, fo5, white, QPoint( r ,0 ), QString("%1").arg(j*0.1) ) ;
             j++ ;
         }
 
@@ -203,63 +205,16 @@ if(m_isUnitmB){
     updateWithBackground();
 
     painter.restore() ;
-} else {
-
-    // graduations "QNH"
-
-    float w, h ;		// épaisseur et longueur du trait de graduation
-    QRect gRect ;		// rectangle "trait graduation"
-    float gRadius ;		// arrondi sommets rectangle gRect
-    //float r = m_radius[QNH] ;	// rayon de départ
-
-    painter.save() ;
-
-    QPen pen( white ) ;
-    pen.setWidth(5) ;
-    painter.setPen( pen ) ;
-
-    painter.setBrush( white ) ;
-    pen.setWidth(1) ;
-    painter.setPen( pen ) ;
-
-    painter.rotate( m_start[QNH]* -(value(QNH)*(0.347)) ) ;
-    int j = 945 ;
-    for ( int i = 0 ; i <= ( 109 ) ; ++i ) {
-
-        if ( i % 5 == 0 ) {	w = 5 ; h = 30 ; }
-        else {				w =  3 ; h = 20 ; }
-
-        gRect = QRect(m_radius[QNH] - h, -w / 2, h, w) ;
-        if  ( i % 5 == 0 ){
-            float r = m_radius[QNH] -62 ;
-            showText(painter, fo3, white, QPoint( r ,0 ), QString("%1").arg(j) ) ;
-            j = j + 5 ;
-        }
-
-        gRadius = w / 4 ;
-        painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
-        painter.rotate( 3.27) ;
-
-    }
-    updateWithBackground();
-
-    painter.restore() ;
-
-}
     painter.save();
     painter.setBrush(black1);
     painter.drawPie(-0.6*QFI_RADIUS,-0.6*QFI_RADIUS,1.6*0.75*QFI_RADIUS,1.6*0.75*QFI_RADIUS,-18*16,-324*16);
-    painter.drawPie(-0.56*0.75*QFI_RADIUS,-0.56*0.75*QFI_RADIUS,1.4*0.6*QFI_RADIUS,1.4*0.6*QFI_RADIUS,-18*16,36*16);
+    //painter.drawPie(-0.56*0.75*QFI_RADIUS,-0.56*0.75*QFI_RADIUS,1.4*0.6*QFI_RADIUS,1.4*0.6*QFI_RADIUS,-18*16,36*16);
+    painter.drawPie(-0.2*1.82*QFI_RADIUS,-0.2*1.82*QFI_RADIUS,1.2*0.6*QFI_RADIUS,1.22*0.6*QFI_RADIUS,-18*16,36*16);
     painter.restore();
 
     // aiguille "ALTIMETER"
 
-    int axeRadius = 25 ;
 
-    QConicalGradient	cg(QPointF(0.0, 0.0 ), 360 ) ;
-    cg.setColorAt(0.0, Qt::white ) ;
-    cg.setColorAt(0.5, Qt::black ) ;
-    cg.setColorAt(1.0, Qt::white ) ;
     painter.save();
     painter.setBrush( white ) ;
     painter.rotate(90);
@@ -274,7 +229,7 @@ if(m_isUnitmB){
     pts <<  QPointF( 0, 15 ) << QPointF( 100, 15 ) << QPointF( 120, 5 ) << QPointF( 400, 5 ) << QPointF( 460 , 40 ) ;
 
     painter.save() ;
-    painter.rotate( -90 + value(ALTIMETER) * 36 / 10000 ) ;
+    painter.rotate( -90 + value(ALTIMETER) * 36.0 / 10000 ) ;
     qfiNeedle(painter, white, pts, 30, 0, 0.5 * len ) ;
 
 
@@ -292,7 +247,7 @@ if(m_isUnitmB){
     pts << 	QPointF( -0.3, 20 ) << QPointF( len - 80, 35 ) << QPointF( len , 0 ) ;
 
     painter.save() ;
-    painter.rotate( 270 + value(ALTIMETER) * 36 /1000 );
+    painter.rotate( 270 + value(ALTIMETER) * 36.0 /1000 );
     qfiNeedle(painter, white, pts, 35, 0, 0.35 * len ) ;
     painter.restore() ;
 
@@ -304,10 +259,141 @@ if(m_isUnitmB){
     pts << QPointF( -0.3 * m_radius[ALTIMETER], 10 ) << QPointF( 0.8 * len, 10 ) << QPointF( len, 5 ) ;
 
     painter.save() ;
-    painter.rotate( 270 + value(ALTIMETER) * 36 / 100 );
+    painter.rotate( 270 + value(ALTIMETER) * 36.0 / 100 );
     qfiNeedle(painter, white, pts, 30, 30, 0.27 * len ) ;
     painter.restore() ;
+    painter.save();
 
+    setLabel(QString("in.Hg"), ALTIMETER ) ;
+    showText(painter, fo4, white, QPoint( 0, 0.5 * m_radius[ALTIMETER] ), label(ALTIMETER) ) ;
+
+    } else {
+
+    // graduations "QNH"
+
+    float w, h ;		// épaisseur et longueur du trait de graduation
+    QRect gRect ;		// rectangle "trait graduation"
+    float gRadius ;		// arrondi sommets rectangle gRect
+
+    painter.save() ;
+
+    QPen pen( white ) ;
+    pen.setWidth(5) ;
+    painter.setPen( pen ) ;
+
+    painter.setBrush( white ) ;
+    pen.setWidth(1) ;
+    painter.setPen( pen ) ;
+
+    painter.rotate( m_start[QNH] ) ;
+    painter.rotate(-(value(QNH)*343.35/1000));
+    int j = 945 ;
+    for ( int i = 0 ; i <= ( 109 ) ; ++i ) {
+
+        if ( i % 5 == 0 ) {	w = 5 ; h = 30 ; }
+
+        else {				w =  3 ; h = 20 ; }
+
+        gRect = QRect(m_radius[QNH] - h, -w / 2, h, w) ;
+        if  ( i % 5 == 0 ){
+            float r = m_radius[QNH] -70 ;
+            showText(painter, fo5, white, QPoint( r ,0 ), QString("%1").arg(j) ) ;
+            j = j + 5 ;
+        }
+
+        gRadius = w / 4 ;
+        painter.drawRoundedRect(gRect, gRadius, gRadius ) ;
+        painter.rotate( 3.27) ;
+
+    }
+    updateWithBackground();
+
+
+
+
+    painter.restore() ;
+    painter.save();
+    painter.setBrush(black1);
+    painter.drawPie(-0.6*QFI_RADIUS,-0.6*QFI_RADIUS,1.6*0.75*QFI_RADIUS,1.6*0.75*QFI_RADIUS,-18*16,-324*16);
+    //painter.drawPie(-0.56*0.75*QFI_RADIUS,-0.56*0.75*QFI_RADIUS,1.4*0.6*QFI_RADIUS,1.4*0.6*QFI_RADIUS,-18*16,36*16);
+        painter.drawPie(-0.2*1.82*QFI_RADIUS,-0.2*1.82*QFI_RADIUS,1.2*0.6*QFI_RADIUS,1.22*0.6*QFI_RADIUS,-18*16,36*16);
+    painter.restore();
+
+    // aiguille "ALTIMETER"
+
+
+
+    painter.save();
+    painter.setBrush( white ) ;
+    painter.rotate(90);
+    painter.drawPie(-0.3*QFI_RADIUS,-0.3*QFI_RADIUS,0.6*QFI_RADIUS,0.6*QFI_RADIUS,-30*16,90*16 ) ;
+    painter.restore() ;
+
+
+    //aiguille "ALTIMETER" dixième de miller
+
+    len = 1.025 * 0.77 * QFI_RADIUS ;
+    pts.clear() ;
+    pts <<  QPointF( 0, 15 ) << QPointF( 100, 15 ) << QPointF( 120, 5 ) << QPointF( 400, 5 ) << QPointF( 460 , 40 ) ;
+
+    painter.save() ;
+    painter.rotate( -90 + value(ALTIMETER) * 36.0 / 10000 ) ;
+    qfiNeedle(painter, white, pts, 30, 0, 0.5 * len ) ;
+
+
+    painter.setBrush(black1);
+    painter.drawPie(-0.3*QFI_RADIUS,-0.3*QFI_RADIUS,0.6*QFI_RADIUS,0.6*QFI_RADIUS,-18*16,-140*16);
+    painter.drawPie(-0.3*QFI_RADIUS,-0.3*QFI_RADIUS,0.6*QFI_RADIUS,0.6*QFI_RADIUS,18*16,140*16);
+    painter.restore();
+
+
+
+    // aiguille "ALTIMETER" centaines
+
+    len = 0.7 * m_radius[ALTIMETER] ;
+    pts.clear() ;
+    pts << 	QPointF( -0.3, 20 ) << QPointF( len - 80, 35 ) << QPointF( len , 0 ) ;
+
+    painter.save() ;
+    painter.rotate( 270 + value(ALTIMETER) * 36.0 /1000 );
+    qfiNeedle(painter, white, pts, 35, 0, 0.35 * len ) ;
+    painter.restore() ;
+
+
+    // aiguille "longue" milliers
+
+    len = 0.9 * m_radius[ALTIMETER] ;
+    pts.clear() ;
+    pts << QPointF( -0.3 * m_radius[ALTIMETER], 10 ) << QPointF( 0.8 * len, 10 ) << QPointF( len, 5 ) ;
+
+    painter.save() ;
+    painter.rotate( 270 + value(ALTIMETER) * 36.0 / 100 );
+    qfiNeedle(painter, white, pts, 30, 30, 0.27 * len ) ;
+    painter.restore() ;
+    painter.save();
+
+    setLabel(QString("Millibar"), ALTIMETER ) ;
+    showText(painter, fo4, white, QPoint( 0, 0.5 * m_radius[ALTIMETER] ), label(ALTIMETER) ) ;
+
+
+}
+
+    QConicalGradient	cg(QPointF(0.0, 0.0 ), 360 ) ;
+    cg.setColorAt(0.0, Qt::white ) ;
+    cg.setColorAt(0.5, Qt::black ) ;
+    cg.setColorAt(1.0, Qt::white ) ;
+    int axeRadius = 25 ;
+    int i ;
+    float h = 20 ;
+    float r = m_radius[QNH] ;	// rayon de départ
+    float hbis = h + 5 ;
+    QPolygon triangle ;
+
+    triangle << QPoint ( r,0) << QPoint (r + 1.5 * hbis, - 0.75 * hbis) << QPoint(r + 1.5 * hbis,0.75* hbis);
+
+    painter.setBrush(white);
+    if ( i == 0) painter.drawConvexPolygon(triangle);
+    painter.restore();
 
 
     painter.save() ;

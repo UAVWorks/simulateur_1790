@@ -38,6 +38,7 @@ class QAltimeter : public QamFlightInstrument
     QFont fo2;
     QFont fo3;
     QFont fo4;
+    QFont fo5;
     float	m_radius[2] ;	// rayon ext. graduation
     float	m_start[2] ;	// angle de l'origine (p/r 3 o'clock)
     float	m_span[2] ;		// amplitude angulaire totale
