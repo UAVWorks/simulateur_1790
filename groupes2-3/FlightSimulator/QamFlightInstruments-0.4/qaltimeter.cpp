@@ -48,9 +48,10 @@ QAltimeter::QAltimeter(QWidget* parent ) : QamFlightInstrument(parent) , m_isUni
 
     //	animation des aiguilles (pour tests)
 
-    setAdjustable(20, 0, ALTIMETER ) ;
-    //setAdjustable(100, 0, QNH ) ;
+    //setAdjustable(20, 0, ALTIMETER ) ;
+    setAdjustable(100, 0, QNH ) ;
     adjustementChanged(QNH,0); // QNH mb= 648 ; QNH IN.Hg
+
 }
 
 void QAltimeter::showText(QPainter& painter, QFont& font, QColor& color, const QPoint& center, const QString& s )
@@ -267,6 +268,8 @@ void QAltimeter::drawForeground(QPainter& painter )
     setLabel(QString("in.Hg"), ALTIMETER ) ;
     showText(painter, fo4, white, QPoint( 0, 0.5 * m_radius[ALTIMETER] ), label(ALTIMETER) ) ;
 
+
+
     } else {
 
     // graduations "QNH"
@@ -309,8 +312,6 @@ void QAltimeter::drawForeground(QPainter& painter )
     updateWithBackground();
 
 
-
-
     painter.restore() ;
     painter.save();
     painter.setBrush(black1);
@@ -319,10 +320,17 @@ void QAltimeter::drawForeground(QPainter& painter )
         painter.drawPie(-0.2*1.82*QFI_RADIUS,-0.2*1.82*QFI_RADIUS,1.2*0.6*QFI_RADIUS,1.22*0.6*QFI_RADIUS,-18*16,36*16);
     painter.restore();
 
+
+   // if ( value(QNH)== 648){
+     //   value(ALTIMETER) == 0;
+    //} else if (value(QNH)<648) {
+      //  painter.rotate(value(ALTIMETER)-7.2);
+    //}else if (value(QNH)>648){
+      //  painter.rotate(value(ALTIMETER)+7.2);
+    //}
+
+
     // aiguille "ALTIMETER"
-
-
-
     painter.save();
     painter.setBrush( white ) ;
     painter.rotate(90);
@@ -407,4 +415,6 @@ void QAltimeter::drawForeground(QPainter& painter )
     painter.drawEllipse(-axeRadius, -axeRadius, 2 * axeRadius, 2 * axeRadius ) ;
     painter.restore() ;
 
+
 }
+
