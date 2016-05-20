@@ -14,6 +14,7 @@
 #include <dataref.h>
 #include <qfipanel.h>
 #include <qamgyrodir.h>
+#include <QHA.h>
 #include <qamudpsocket.h>
 #include <xplaneudpworker.h>
 #include <QTextStream>
@@ -33,7 +34,9 @@ public:
     void createChronograph(int id, int x, int y, int widht, int height) ;
     void createTurnCoordinator(int id, int x, int y, int widht, int height) ;
     void createTachymeter(int id, int x, int y, int widht, int height) ;
-//  void createQHA(int id, int x, int y, int width, int height) ;
+    void createVariometer(int id, int x, int y, int widht, int height) ;
+    void createGyroDir(int id, int x, int y, int widht, int height) ;
+    void createQHA(int id, int x, int y, int width, int height) ;
     void setQFI(int x, int y, int width, int height, QamFlightInstrument* QFI,int id) ;
     bool loadConf(QString& file) ;
 

@@ -146,17 +146,17 @@ class QamFlightInstrument : public QWidget
 	void lowLevel(int axis = 0 ) ;
 	void normalLevel(int axis = 0 ) ;
 	void highLevel(int axis = 0 ) ;
-	void valueChanged(float value, int axis = 0  ) ;
+    void valueChanged(float value, int axis = 0  ) ;
 //	void alarmState(int led1, int led2 ) ; 
 	void alarmState(int id, int num, int state ) ;			// pour pilotage led externe (4 états possibles)
 
   public slots:
 	void setValue(float value, int axis = 0 ) ;
+    void spinBoxValueChanged( double value ) ;
 	virtual void selectPressed(int num, bool longClic = false ) ;	// pour pilotage par BP externe
 	virtual void adjustmentChanged(int num, float value ) ;			// pour pilotage par Adj externe
 
   private slots:
-  	void spinBoxValueChanged( double value ) ;
   	void pbuSelectClicked() ;
   	
   protected:

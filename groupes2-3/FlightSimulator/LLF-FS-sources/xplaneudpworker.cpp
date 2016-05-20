@@ -121,7 +121,7 @@ void XPlaneUdpWorker::setXPlaneTrafic(bool start )
 //			m_udpSendSocket->sockWrite( d->xplaneRrefRequest() ) ;
 			this->send( d->xplaneRrefRequest() ) ;
 
-QThread::msleep(2000) ;
+QThread::msleep(2500) ;
 			// attendre la première trame de réponse...
 //			while ( m_rrefWaitingId > 0 )	QCoreApplication::processEvents() ;
 //			m_rrefWaitingTimer->stop() ;

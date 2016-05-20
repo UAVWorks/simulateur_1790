@@ -42,8 +42,8 @@ QamFlightInstrument::QamFlightInstrument(QWidget* parent )
 		m_label[i] = QString("") ;
 		m_unit[i] = QString("%") ;
 		m_value[i] = 50.0 ;
-		m_lowThreshold[i]  = m_minimum[i] = 0.0 ;
-		m_highThreshold[i] = m_maximum[i] = 100.0 ;
+        m_lowThreshold[i]  = m_minimum[i] = -42848289489482984.980 ;
+        m_highThreshold[i] = m_maximum[i] = 4564188287789279827.0 ;
 		m_adjustable[i] = false ;
 	}
 	m_background = new QPixmap( size() ) ;
